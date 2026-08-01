@@ -1,0 +1,326 @@
+/* DISC-37 visual and motion polish.
+   Loaded after responsive-layout.css. This layer restores the intended Hero
+   scale, keeps language controls inside navigation, reconnects Arabic section
+   labels with their headings, mirrors the portfolio watermark, and restores
+   compact-screen entrance motion without weakening fail-open behavior.
+*/
+
+@media (min-width: 961px) {
+  html[lang="ar"][dir="rtl"] .systems__intro,
+  html[lang="ar"][dir="rtl"] .portfolio__heading {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.35rem !important;
+    width: min(calc(100% - 3rem), 1100px) !important;
+    margin-inline: auto !important;
+    align-items: start !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro > div,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > div,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
+    grid-column: 1 !important;
+    width: min(100%, 900px) !important;
+    max-width: 900px !important;
+    justify-self: center !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro > div:first-child,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > div {
+    display: block !important;
+  }
+
+  html[lang="ar"][dir="rtl"] :where(
+    .systems__intro .eyebrow,
+    .portfolio__heading .eyebrow
+  ) {
+    margin-bottom: 0.75rem !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro .section-index {
+    margin-top: 0 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
+    align-self: auto !important;
+    line-height: 1.9 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .portfolio::before {
+    right: auto !important;
+    left: -0.04em !important;
+    direction: ltr !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    padding-top: calc(var(--header-height) + 3rem) !important;
+    padding-bottom: 5rem !important;
+  }
+
+  .hero__grid {
+    gap: clamp(2rem, 5vw, 3rem) !important;
+  }
+
+  .hero-title {
+    font-size: clamp(4.15rem, 10vw, 5.9rem) !important;
+    line-height: 0.9 !important;
+  }
+
+  .hero .lead {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem) !important;
+    line-height: 1.72 !important;
+  }
+
+  .hero-visual {
+    width: min(100%, 360px) !important;
+    min-height: clamp(300px, 42vw, 360px) !important;
+    transform: translateY(18px) !important;
+  }
+
+  .is-ready .hero-visual {
+    transform: translateY(0) !important;
+  }
+
+  .hero-mark {
+    width: min(64vw, 295px) !important;
+  }
+
+  .hero-orbit--one {
+    width: 320px !important;
+    height: 320px !important;
+  }
+
+  .hero-orbit--two {
+    width: 385px !important;
+    height: 385px !important;
+  }
+
+  .story__heading h2,
+  .section-heading h2,
+  .systems__intro h2,
+  .portfolio__heading h2,
+  .contact-panel h2 {
+    font-size: clamp(3.2rem, 7.8vw, 4.65rem) !important;
+  }
+
+  .story__lead {
+    font-size: clamp(1.3rem, 3.2vw, 1.7rem) !important;
+  }
+
+  .story__content > p:not(.story__lead),
+  .systems__lead,
+  .capability-card p,
+  .flow-step p,
+  .product-card > p,
+  .contact-panel__content > p:not(.eyebrow) {
+    font-size: 1.05rem !important;
+  }
+
+  .capability-card,
+  .product-card,
+  .flow-step {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion] {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translate3d(0, 22px, 0) scale(0.99) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion="left"] {
+    transform: translate3d(-22px, 0, 0) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion="right"] {
+    transform: translate3d(22px, 0, 0) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion="scale"] {
+    transform: scale(0.955) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion="soft"] {
+    transform: translate3d(0, 14px, 0) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) [data-motion].motion-visible {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .flow-step {
+    opacity: 0.48 !important;
+  }
+
+  .flow-step[data-state="complete"],
+  .flow-step[data-state="current"] {
+    opacity: 1 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title {
+    font-size: clamp(3.65rem, 8.8vw, 5.05rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] :where(
+    .story__heading h2,
+    .section-heading h2,
+    .systems__intro h2,
+    .portfolio__heading h2,
+    .contact-panel h2
+  ) {
+    font-size: clamp(3rem, 7vw, 4.15rem) !important;
+    line-height: 1.13 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .portfolio::before {
+    right: auto !important;
+    left: -0.04em !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .site-nav:not(.open) .language-switch {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: none !important;
+  }
+
+  .site-nav.open .language-switch {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding-top: calc(var(--header-height) + 2.2rem) !important;
+    padding-bottom: 4.5rem !important;
+  }
+
+  .hero__grid {
+    gap: 2rem !important;
+  }
+
+  .hero-title {
+    max-width: 9.5ch !important;
+    font-size: clamp(3.5rem, 17vw, 4.85rem) !important;
+    line-height: 0.9 !important;
+  }
+
+  .hero .lead {
+    font-size: 1.04rem !important;
+    line-height: 1.72 !important;
+  }
+
+  .hero-visual {
+    width: min(100%, 300px) !important;
+    min-height: 285px !important;
+  }
+
+  .hero-mark {
+    width: min(69vw, 245px) !important;
+  }
+
+  .hero-orbit--one {
+    width: 275px !important;
+    height: 275px !important;
+  }
+
+  .hero-orbit--two {
+    width: 330px !important;
+    height: 330px !important;
+  }
+
+  .story__heading h2,
+  .section-heading h2,
+  .systems__intro h2,
+  .portfolio__heading h2,
+  .contact-panel h2 {
+    max-width: 11.5ch !important;
+    font-size: clamp(2.85rem, 12.2vw, 4rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  .story__lead {
+    font-size: clamp(1.28rem, 5.6vw, 1.62rem) !important;
+    line-height: 1.38 !important;
+  }
+
+  .capability-card h3 {
+    font-size: clamp(1.9rem, 8vw, 2.4rem) !important;
+  }
+
+  .flow-step strong {
+    font-size: 1.45rem !important;
+  }
+
+  .product-card h3 {
+    font-size: clamp(1.9rem, 8vw, 2.35rem) !important;
+  }
+
+  .brand img,
+  .footer__brand img {
+    width: 112px !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title {
+    max-width: 9ch !important;
+    font-size: clamp(3.15rem, 14.2vw, 4.25rem) !important;
+    line-height: 1.09 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] :where(
+    .story__heading h2,
+    .section-heading h2,
+    .systems__intro h2,
+    .portfolio__heading h2,
+    .contact-panel h2
+  ) {
+    max-width: 11ch !important;
+    font-size: clamp(2.7rem, 11vw, 3.65rem) !important;
+    line-height: 1.15 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: clamp(3.25rem, 17vw, 4.3rem) !important;
+  }
+
+  .hero-visual {
+    min-height: 265px !important;
+  }
+
+  .hero-mark {
+    width: min(70vw, 230px) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title {
+    font-size: clamp(2.95rem, 14.3vw, 3.85rem) !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 960px) {
+  html:not(.no-js):not(.motion-fallback) .capability-card.motion-visible:hover,
+  html:not(.no-js):not(.motion-fallback) .capability-card.motion-visible:focus-visible {
+    transform: translateY(-7px) scale(1.006) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) .flow-step.motion-visible:hover,
+  html:not(.no-js):not(.motion-fallback) .flow-step.motion-visible:focus-within {
+    transform: translateY(-4px) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) .product-card.motion-visible:hover,
+  html:not(.no-js):not(.motion-fallback) .product-card.motion-visible:focus-within {
+    transform: translateY(-8px) !important;
+  }
+}

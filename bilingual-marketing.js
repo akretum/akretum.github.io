@@ -1,11 +1,12 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const supportsObserver = 'IntersectionObserver' in window;
-  document.body.dataset.marketingExperience = 'disc26';
+  const rtl = document.documentElement.dir === 'rtl';
+  document.body.dataset.marketingExperience = 'disc37';
 
   const groups = [
     { selector: '.hero-proof span, .hero-visual__caption span', variant: 'soft', step: 65 },
-    { selector: '.story__heading .eyebrow, .story__heading h2', variant: 'left', step: 95 },
+    { selector: '.story__heading .eyebrow, .story__heading h2', variant: rtl ? 'right' : 'left', step: 95 },
     { selector: '.story__content > p, .story-principles > div', variant: 'up', step: 85 },
     { selector: '.section-heading .eyebrow, .section-heading .section-index, .section-heading h2', variant: 'up', step: 90 },
     { selector: '.capability-card__top, .capability-card h3, .capability-card p, .capability-tags, .capability-card__arrow', variant: 'soft', step: 55 },
@@ -14,8 +15,7 @@
     { selector: '.portfolio__heading .eyebrow, .portfolio__heading h2, .portfolio__heading > p', variant: 'up', step: 90 },
     { selector: '.product-card__meta, .product-card h3, .product-card > p, .product-card__footer', variant: 'soft', step: 60 },
     { selector: '.contact-panel .eyebrow, .contact-panel h2, .contact-panel__content > p, .contact-actions, .contact-panel__email', variant: 'up', step: 75 },
-    { selector: '.footer__brand, .footer__nav a, .footer__bottom p:not(:last-child)', variant: 'soft', step: 60 },
-    { selector: '.language-switch', variant: 'scale', step: 0 }
+    { selector: '.footer__brand, .footer__nav a, .footer__bottom p:not(:last-child)', variant: 'soft', step: 60 }
   ];
 
   const nodes = [];

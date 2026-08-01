@@ -1,6 +1,7 @@
-/* DISC-35 fail-open motion safety.
-   Entrance animation must never be required for content visibility.
-   Hover and focus transitions remain available in the existing design styles.
+/* DISC-37 fail-open motion safety.
+   Normal JavaScript-enhanced sessions keep the approved entrance animations.
+   Content is forced visible only when JavaScript is unavailable or an explicit
+   runtime fallback is activated.
 */
 
 html,
@@ -17,28 +18,60 @@ body {
   filter: none !important;
 }
 
-html:not(.no-js) :where(
+html.no-js :where(
   [data-reveal],
+  [data-motion],
   [data-micro-motion],
   [data-shared-motion],
   .hero-enter,
+  .hero-title__line,
+  .hero-mark__complete,
+  .hero-mark__core,
   .reveal,
   .motion-item
-) {
+):not(.language-switch),
+html.motion-fallback :where(
+  [data-reveal],
+  [data-motion],
+  [data-micro-motion],
+  [data-shared-motion],
+  .hero-enter,
+  .hero-title__line,
+  .hero-mark__complete,
+  .hero-mark__core,
+  .reveal,
+  .motion-item
+):not(.language-switch) {
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
   transform: none !important;
   clip-path: none !important;
+  animation: none !important;
+  transition: none !important;
 }
 
-html:not(.no-js) :where(
+html.no-js :where(
   [data-reveal],
+  [data-motion],
   [data-micro-motion],
   [data-shared-motion]
 )::before,
-html:not(.no-js) :where(
+html.no-js :where(
   [data-reveal],
+  [data-motion],
+  [data-micro-motion],
+  [data-shared-motion]
+)::after,
+html.motion-fallback :where(
+  [data-reveal],
+  [data-motion],
+  [data-micro-motion],
+  [data-shared-motion]
+)::before,
+html.motion-fallback :where(
+  [data-reveal],
+  [data-motion],
   [data-micro-motion],
   [data-shared-motion]
 )::after {
