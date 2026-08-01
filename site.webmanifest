@@ -1,0 +1,19 @@
+{
+  "name": "AKRETUM",
+  "short_name": "AKRETUM",
+  "description": "Digital products, AI-enabled systems, enterprise software, and scalable platforms.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0F1113",
+  "theme_color": "#0F1113",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg?v=disc34-favicon-visibility-20260801",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+/* DISC-34 — Arabic mobile RTL and official Cairo enforcement.
+   Loaded only by the Arabic page after the shared design-system layer.
+*/
+
+html[lang="ar"][dir="rtl"] body,
+html[lang="ar"][dir="rtl"] :where(button, input, textarea, select) {
+  font-family: "Cairo", sans-serif !important;
+  font-synthesis: none;
+}
+
+html[lang="ar"][dir="rtl"] .hero-title,
+html[lang="ar"][dir="rtl"] .hero-title__line,
+html[lang="ar"][dir="rtl"] .hero .eyebrow,
+html[lang="ar"][dir="rtl"] .hero .lead {
+  text-align: right;
+}
+
+html[lang="ar"][dir="rtl"] .hero-title,
+html[lang="ar"][dir="rtl"] .hero-title__line {
+  margin-inline: 0 auto;
+}
+
+html[lang="ar"][dir="rtl"] .hero-title__line--3::after {
+  right: 0.04em;
+  left: auto;
+  transform-origin: right;
+}
+
+html[lang="ar"][dir="rtl"] .hero-proof span:not(:last-child)::after {
+  right: auto;
+  left: -0.85rem;
+}
+
+html[lang="ar"][dir="rtl"] .hero-visual__caption {
+  direction: rtl;
+  text-align: right;
+}
+
+@media (max-width: 820px) {
+  html[lang="ar"][dir="rtl"] .hero__grid,
+  html[lang="ar"][dir="rtl"] .hero__copy,
+  html[lang="ar"][dir="rtl"] .hero-actions,
+  html[lang="ar"][dir="rtl"] .hero-actions .button,
+  html[lang="ar"][dir="rtl"] .hero-proof {
+    direction: rtl;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero__copy {
+    width: 100%;
+    justify-self: stretch;
+    text-align: right;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero .eyebrow,
+  html[lang="ar"][dir="rtl"] .hero .lead {
+    margin-inline: 0 auto;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-actions .button {
+    text-align: right;
+  }
+
+  html[lang="ar"][dir="rtl"] .site-nav,
+  html[lang="ar"][dir="rtl"] .footer,
+  html[lang="ar"][dir="rtl"] .footer__top,
+  html[lang="ar"][dir="rtl"] .footer__bottom,
+  html[lang="ar"][dir="rtl"] .contact-panel,
+  html[lang="ar"][dir="rtl"] .contact-panel__email {
+    text-align: right;
+  }
+
+  html[lang="ar"][dir="rtl"] .footer__bottom p,
+  html[lang="ar"][dir="rtl"] .footer__bottom p:nth-child(2),
+  html[lang="ar"][dir="rtl"] .footer__bottom p:last-child {
+    text-align: right;
+  }
+}
+
+@media (max-width: 760px) {
+  html[lang="ar"][dir="rtl"] .hero {
+    --pointer-x: 28%;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero::after {
+    right: auto;
+    left: -70%;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-visual {
+    right: auto;
+    left: -7.5rem;
+  }
+
+  html[lang="ar"][dir="rtl"] :where(.capability-grid, .system-flow, .product-grid) {
+    direction: rtl;
+  }
+
+  html[lang="ar"][dir="rtl"] .portfolio::before {
+    right: auto;
+    left: -0.04em;
+  }
+
+  html[lang="ar"][dir="rtl"] .contact-panel::after {
+    right: auto;
+    left: -70px;
+  }
+
+  html[lang="ar"][dir="rtl"] .product-card__footer,
+  html[lang="ar"][dir="rtl"] .contact-actions,
+  html[lang="ar"][dir="rtl"] .contact-actions .button,
+  html[lang="ar"][dir="rtl"] .footer__nav {
+    direction: rtl;
+  }
+}
+
+@media (max-width: 420px) {
+  html[lang="ar"][dir="rtl"] .hero-visual {
+    right: auto;
+    left: -9rem;
+  }
+}

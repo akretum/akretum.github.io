@@ -1,0 +1,458 @@
+/* DISC-23 — semantic product hierarchy and interaction system.
+   Loaded last so accepted layout decisions remain intact unless explicitly approved here.
+*/
+
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 220ms;
+  --motion-medium: 520ms;
+  --motion-slow: 820ms;
+  --status-teal: #0d5b5d;
+  --status-jade: #1f7a5c;
+  --status-gold: #d9be7c;
+  --status-charcoal: #111827;
+}
+
+/* Equal portfolio geometry on desktop. */
+@media (min-width: 761px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: stretch;
+  }
+
+  .product-card {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+  }
+}
+
+.product-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.product-card::before {
+  position: relative;
+  z-index: 0;
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    filter var(--motion-medium) ease;
+}
+
+/* Future Product: an emerging AKRETUM system rather than a placeholder plus sign. */
+.product-card:nth-child(3)::before {
+  content: "" !important;
+  color: transparent;
+  background:
+    radial-gradient(circle at 50% 49%, rgba(217, 190, 124, 0.98) 0 4px, transparent 5px),
+    radial-gradient(circle at 50% 49%, rgba(31, 122, 92, 0.16) 0 13%, transparent 13.5%),
+    radial-gradient(circle at 50% 49%, transparent 0 27%, rgba(13, 91, 93, 0.2) 27.4%, transparent 27.9%),
+    radial-gradient(circle at 50% 49%, transparent 0 41%, rgba(17, 24, 39, 0.1) 41.4%, transparent 41.9%),
+    linear-gradient(135deg, rgba(13, 91, 93, 0.13), transparent 48%),
+    linear-gradient(315deg, rgba(217, 190, 124, 0.12), transparent 46%),
+    #f1f2ee !important;
+}
+
+.product-card:nth-child(3)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: clamp(42px, 4vw, 66px);
+  left: 50%;
+  width: clamp(82px, 7vw, 116px);
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(30deg);
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background:
+    linear-gradient(145deg, rgba(13, 91, 93, 0.96), rgba(31, 122, 92, 0.78));
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  box-shadow:
+    0 0 0 13px rgba(13, 91, 93, 0.055),
+    0 0 0 27px rgba(13, 91, 93, 0.025),
+    0 22px 46px rgba(13, 91, 93, 0.18);
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    box-shadow var(--motion-medium) ease;
+}
+
+/* Product category = neutral descriptor. Product status = solid semantic signal. */
+.product-card__meta {
+  align-items: center;
+}
+
+.product-card__meta > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.42rem 0.66rem;
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  background: rgba(255, 255, 255, 0.44);
+  color: #626970;
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  transition:
+    color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    background var(--motion-fast) ease,
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.status-pill,
+.status-pill--outline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid transparent !important;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.055em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  box-shadow: 0 7px 18px rgba(17, 24, 39, 0.09);
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) ease,
+    filter var(--motion-fast) ease;
+}
+
+.product-card:nth-child(1) .status-pill {
+  background: var(--status-teal) !important;
+  color: #fff !important;
+}
+
+.product-card:nth-child(2) .status-pill {
+  background: var(--status-jade) !important;
+  color: #fff !important;
+}
+
+.product-card:nth-child(3) .status-pill {
+  background: var(--status-gold) !important;
+  color: var(--status-charcoal) !important;
+}
+
+/* Capability tags remain one family but become visibly solid and legible. */
+.capability-tags li {
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  background: rgba(255, 255, 255, 0.11) !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  font-weight: 680;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
+}
+
+/* Entrance-motion primitives. JS assigns variants and delays to all major content groups. */
+html:not(.no-js) [data-motion] {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translate3d(0, 26px, 0) scale(0.987);
+  transition:
+    opacity var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease),
+    filter var(--motion-slow) var(--motion-ease);
+  transition-delay: var(--motion-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+html:not(.no-js) [data-motion="left"] {
+  transform: translate3d(-30px, 0, 0);
+}
+
+html:not(.no-js) [data-motion="right"] {
+  transform: translate3d(30px, 0, 0);
+}
+
+html:not(.no-js) [data-motion="scale"] {
+  transform: scale(0.94);
+}
+
+html:not(.no-js) [data-motion="soft"] {
+  transform: translate3d(0, 14px, 0);
+  filter: blur(8px);
+}
+
+html:not(.no-js) [data-motion].motion-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+/* Navigation: precise underline sweep. */
+.site-nav a,
+.footer__nav a {
+  position: relative;
+  transition: color var(--motion-fast) ease, opacity var(--motion-fast) ease;
+}
+
+.site-nav a::after,
+.footer__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.42rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms var(--motion-ease);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.footer__nav a:hover::after,
+.footer__nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Buttons: lift, controlled light, and directional arrow response. */
+.button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    background var(--motion-fast) ease;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 18%, rgba(255, 255, 255, 0.25) 48%, transparent 78%);
+  transform: translateX(-130%);
+  transition: transform 620ms var(--motion-ease);
+}
+
+.button-arrow {
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 28px rgba(0, 0, 0, 0.16);
+}
+
+.button:hover::before,
+.button:focus-visible::before {
+  transform: translateX(130%);
+}
+
+.button:hover .button-arrow,
+.button:focus-visible .button-arrow {
+  transform: translate3d(4px, -2px, 0);
+}
+
+/* Capabilities: depth and local glow. */
+.capability-card {
+  transition:
+    transform 420ms var(--motion-ease),
+    border-color 320ms ease,
+    background 320ms ease,
+    box-shadow 420ms ease;
+}
+
+.capability-card:hover,
+.capability-card:focus-visible {
+  transform: translateY(-7px) scale(1.006);
+  border-color: rgba(224, 167, 47, 0.58);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.16);
+}
+
+.capability-card:hover .capability-tags li,
+.capability-card:focus-visible .capability-tags li {
+  transform: translateY(-2px);
+  border-color: rgba(224, 167, 47, 0.72) !important;
+  background: rgba(255, 255, 255, 0.17) !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Process: focused edge and staged number response, distinct from card lift. */
+.flow-step {
+  transition:
+    border-color 320ms ease,
+    background 320ms ease,
+    transform 420ms var(--motion-ease),
+    box-shadow 420ms ease;
+}
+
+.flow-step__number,
+.flow-step strong {
+  transition: color var(--motion-fast) ease, transform var(--motion-fast) var(--motion-ease);
+}
+
+.flow-step:hover,
+.flow-step:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(224, 167, 47, 0.58);
+  background: rgba(224, 167, 47, 0.035);
+  box-shadow: inset 0 3px 0 rgba(224, 167, 47, 0.72);
+}
+
+.flow-step:hover .flow-step__number,
+.flow-step:hover strong,
+.flow-step:focus-within .flow-step__number,
+.flow-step:focus-within strong {
+  color: #e0a72f;
+  transform: translateX(3px);
+}
+
+/* Product cards: lift, visual expansion, status emphasis. */
+.product-card {
+  transition:
+    transform 440ms var(--motion-ease),
+    box-shadow 440ms ease,
+    border-color 320ms ease;
+}
+
+.product-card:hover,
+.product-card:focus-within {
+  transform: translateY(-8px);
+  border-color: rgba(13, 91, 93, 0.44);
+  box-shadow: 0 26px 54px rgba(17, 24, 39, 0.13);
+}
+
+.product-card:hover::before,
+.product-card:focus-within::before {
+  transform: scale(1.035);
+  filter: saturate(1.06) contrast(1.02);
+}
+
+.product-card:nth-child(3):hover::after,
+.product-card:nth-child(3):focus-within::after {
+  transform: translateX(-50%) rotate(90deg) scale(1.08);
+  box-shadow:
+    0 0 0 15px rgba(13, 91, 93, 0.065),
+    0 0 0 32px rgba(13, 91, 93, 0.03),
+    0 26px 54px rgba(13, 91, 93, 0.25);
+}
+
+.product-card:hover .status-pill,
+.product-card:focus-within .status-pill {
+  transform: translateY(-2px);
+  filter: saturate(1.12);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.16);
+}
+
+.product-card:hover .product-card__meta > span:first-child,
+.product-card:focus-within .product-card__meta > span:first-child {
+  transform: translateY(-2px);
+  color: #111827;
+  border-color: rgba(13, 91, 93, 0.32);
+  background: #fff;
+}
+
+.product-card__footer a {
+  position: relative;
+}
+
+.product-card__footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.28rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.product-card__footer a:hover::after,
+.product-card__footer a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* CTA and Footer: ambient response without changing composition. */
+.contact-panel {
+  transition: box-shadow var(--motion-slow) ease;
+}
+
+.contact-panel:hover {
+  box-shadow: inset 0 0 90px rgba(13, 91, 93, 0.12);
+}
+
+.footer__brand img {
+  transition: transform 380ms var(--motion-ease), filter 380ms ease;
+}
+
+.footer__brand:hover img,
+.footer__brand:focus-visible img {
+  transform: translateY(-2px) scale(1.035);
+  filter: drop-shadow(0 8px 18px rgba(224, 167, 47, 0.18));
+}
+
+/* Strong focus remains available regardless of hover capability. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid #e0a72f;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .product-card:nth-child(3)::after {
+    top: 38px;
+    width: 82px;
+  }
+
+  /* Entrance movement is shorter on compact screens. */
+  html:not(.no-js) [data-motion] {
+    transform: translate3d(0, 18px, 0) scale(0.99);
+  }
+
+  html:not(.no-js) [data-motion="left"] {
+    transform: translate3d(-18px, 0, 0);
+  }
+
+  html:not(.no-js) [data-motion="right"] {
+    transform: translate3d(18px, 0, 0);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .capability-card:hover,
+  .flow-step:hover,
+  .product-card:hover,
+  .button:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  html:not(.no-js) [data-motion] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .product-card:nth-child(3)::after,
+  .product-card::before {
+    transform: none !important;
+  }
+}

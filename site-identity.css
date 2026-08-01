@@ -1,0 +1,45 @@
+/* DISC-26 — persistent browser and footer identity details. */
+
+.footer__bottom p:last-child,
+.footer__bottom p:last-child[data-micro-motion],
+.footer__bottom p:last-child:not(.micro-visible) {
+  position: relative;
+  z-index: 3;
+  color: #eef2f2 !important;
+  font-weight: 760;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+  text-shadow: 0 0 18px rgba(245, 244, 241, 0.08);
+  transition: color 240ms ease, text-shadow 240ms ease !important;
+}
+
+.footer__bottom p:last-child:hover,
+.footer__bottom p:last-child:focus-within {
+  color: #f7df9e !important;
+  text-shadow: 0 0 22px rgba(217, 190, 124, 0.2);
+}
+
+.footer__bottom [data-year] {
+  color: #ffffff;
+}
+
+html[dir="rtl"] .footer__bottom p:last-child {
+  text-align: left;
+}
+
+@media (max-width: 760px) {
+  .footer__bottom p:last-child {
+    order: -1;
+    width: 100%;
+    padding-bottom: 0.4rem;
+    text-align: start;
+  }
+
+  html[dir="rtl"] .footer__bottom p:last-child {
+    text-align: right;
+  }
+}

@@ -1,0 +1,62 @@
+/* DISC-35 — fail-open motion safety.
+   Entrance animation must never be required for content visibility.
+   Hover and focus transitions remain available in the existing design styles.
+*/
+
+html,
+body,
+main,
+section,
+.site-header,
+.footer {
+  visibility: visible !important;
+}
+
+body {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+html:not(.no-js) :where(
+  [data-reveal],
+  [data-micro-motion],
+  [data-shared-motion],
+  .hero-enter,
+  .reveal,
+  .motion-item
+) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+html:not(.no-js) :where(
+  [data-reveal],
+  [data-micro-motion],
+  [data-shared-motion]
+)::before,
+html:not(.no-js) :where(
+  [data-reveal],
+  [data-micro-motion],
+  [data-shared-motion]
+)::after {
+  visibility: visible;
+}
+
+.footer__bottom p:last-child,
+.footer__bottom [data-year] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
