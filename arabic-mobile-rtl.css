@@ -336,6 +336,26 @@ html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion]
   }
 }
 
+/* DISC-37 v5 mirror of the final shared visual-emphasis pass. */
+@media (max-width: 960px) {
+  html[lang="ar"][dir="rtl"] .hero-visual {
+    translate: -64% 0 !important;
+  }
+}
+
+@media (max-width: 820px) {
+  html[lang="ar"][dir="rtl"] .site-header__inner > .brand {
+    inset-inline-start: var(--header-edge-gutter) !important;
+    inset-inline-end: auto !important;
+    justify-content: flex-end !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .site-header__inner > .menu-button {
+    inset-inline-end: var(--header-edge-gutter) !important;
+    inset-inline-start: auto !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html[lang="ar"][dir="rtl"] :where(
     [data-motion],

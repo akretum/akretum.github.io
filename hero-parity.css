@@ -322,6 +322,101 @@
   }
 }
 
+/* DISC-37 v5 visual emphasis. The final responsive rules deliberately make
+   the mark dominant and pin Header identity to the physical viewport edges. */
+@media (max-width: 960px) {
+  .hero-visual {
+    width: clamp(880px, 145vw, 1120px) !important;
+    min-height: clamp(760px, 124vw, 980px) !important;
+    translate: 64% 0 !important;
+  }
+
+  .hero-mark {
+    width: min(100%, 1000px) !important;
+  }
+
+  .hero-orbit--one {
+    width: min(112vw, 860px) !important;
+    height: min(112vw, 860px) !important;
+  }
+
+  .hero-orbit--two {
+    width: min(138vw, 1040px) !important;
+    height: min(138vw, 1040px) !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .site-header__inner {
+    --header-edge-gutter: 0.75rem;
+    position: relative !important;
+  }
+
+  .site-header__inner > .brand {
+    position: absolute !important;
+    inset-inline-start: var(--header-edge-gutter) !important;
+    inset-inline-end: auto !important;
+    inline-size: max-content !important;
+    max-width: none !important;
+    display: inline-flex !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+  }
+
+  .site-header__inner > .menu-button {
+    position: absolute !important;
+    inset-inline-end: var(--header-edge-gutter) !important;
+    inset-inline-start: auto !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-visual {
+    width: clamp(820px, 158vw, 1040px) !important;
+    min-height: clamp(720px, 146vw, 920px) !important;
+  }
+
+  .hero-mark {
+    width: min(100%, 920px) !important;
+  }
+
+  .hero-orbit--one {
+    width: min(132vw, 820px) !important;
+    height: min(132vw, 820px) !important;
+  }
+
+  .hero-orbit--two {
+    width: min(164vw, 1020px) !important;
+    height: min(164vw, 1020px) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header__inner {
+    --header-edge-gutter: 0.6rem;
+  }
+
+  .hero-visual {
+    width: 760px !important;
+    min-height: 760px !important;
+  }
+
+  .hero-mark {
+    width: 720px !important;
+  }
+
+  .hero-orbit--one {
+    width: 800px !important;
+    height: 800px !important;
+  }
+
+  .hero-orbit--two {
+    width: 960px !important;
+    height: 960px !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-orbit,
   .hero-mark__piece,
