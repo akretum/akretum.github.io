@@ -1,11 +1,12 @@
-/* DISC-37 v8 final responsive Hero visibility contract.
-   The oversized mark is anchored with physical viewport offsets, not percentage
-   translation. This keeps a large, recognisable portion visible on every phone.
-   The Hero mark and Header identity have no hover, scale, or parallax movement.
+/* DISC-37 v9 responsive Hero composition.
+   The legacy mobile Hero arc is removed because its negative percentage offset
+   expands document width and shifts the Arabic viewport. The actual AKRETUM
+   mark is gigantic, vertically centered, and half-visible at the physical edge
+   inside a contained overlay. EN and AR use identical mirrored geometry.
+   Header and Hero logos have no hover, scale, filter, or parallax movement.
 */
 
 .hero-visual {
-  transform: none !important;
   transition: none !important;
 }
 
@@ -16,23 +17,46 @@
   transition: none !important;
 }
 
+@keyframes mobile-orbit-breathe {
+  0%, 100% { opacity: 0.38; }
+  50% { opacity: 0.72; }
+}
+
 @media (max-width: 960px) {
-  .hero__grid {
-    position: relative !important;
+  .hero {
+    overflow: clip !important;
   }
 
-  .hero-visual {
+  /* This obsolete arc produced exactly 70vw of English overflow and 10vw of
+     Arabic overflow. The contained rings below replace it. */
+  .hero::after,
+  html[lang="ar"][dir="rtl"] body .hero::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .hero__grid {
+    position: static !important;
+  }
+
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: clamp(820px, 175vw, 1080px);
+    --hero-mobile-half-size: clamp(410px, 87.5vw, 540px);
     position: absolute !important;
-    top: 58% !important;
-    right: -58vw !important;
-    bottom: auto !important;
-    left: auto !important;
-    width: clamp(780px, 155vw, 1120px) !important;
-    min-height: clamp(740px, 142vw, 1060px) !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
     margin: 0 !important;
-    justify-self: auto !important;
-    align-self: auto !important;
     translate: none !important;
+    transform: none !important;
+    transition: none !important;
+    contain: strict !important;
+    overflow: hidden !important;
     opacity: 1 !important;
     visibility: visible !important;
     z-index: 1 !important;
@@ -40,24 +64,129 @@
   }
 
   .hero-mark {
-    width: min(100%, 1040px) !important;
+    position: absolute !important;
+    top: 55% !important;
+    right: calc(-1 * var(--hero-mobile-half-size)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: var(--hero-mobile-mark-size) !important;
+    height: auto !important;
     max-width: none !important;
+    max-height: none !important;
+    aspect-ratio: 0.787 !important;
+    translate: 0 -50% !important;
+    transform: none !important;
+    filter: drop-shadow(0 34px 64px rgba(0, 0, 0, 0.34)) !important;
+  }
+
+  .hero-visual__field {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    border-radius: 0 !important;
+    background: radial-gradient(
+      circle var(--hero-mobile-half-size) at 100% 55%,
+      rgba(13, 77, 79, 0.3),
+      rgba(13, 77, 79, 0.08) 48%,
+      transparent 72%
+    ) !important;
+  }
+
+  .hero-orbit {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    translate: none !important;
+    transform: none !important;
   }
 
   .hero-orbit--one {
-    width: min(126vw, 940px) !important;
-    height: min(126vw, 940px) !important;
+    background: radial-gradient(
+      circle clamp(450px, 95vw, 590px) at 100% 55%,
+      transparent calc(100% - 1px),
+      rgba(255, 255, 255, 0.1) 100%,
+      transparent calc(100% + 1px)
+    ) !important;
+    animation: mobile-orbit-breathe 7s ease-in-out infinite !important;
   }
 
   .hero-orbit--two {
-    width: min(154vw, 1160px) !important;
-    height: min(154vw, 1160px) !important;
+    background: radial-gradient(
+      circle clamp(540px, 112.5vw, 690px) at 100% 55%,
+      transparent calc(100% - 1px),
+      rgba(255, 255, 255, 0.065) 100%,
+      transparent calc(100% + 1px)
+    ) !important;
+    animation: mobile-orbit-breathe 10s ease-in-out infinite reverse !important;
   }
 
-  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero-visual {
-    right: auto !important;
-    left: -58vw !important;
+  .hero-orbit--one::after {
+    top: 23% !important;
+    right: 11% !important;
+    left: auto !important;
+  }
+
+  .hero-orbit--two::after {
+    top: 71% !important;
+    right: 5% !important;
+    left: auto !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero-visual,
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid .is-ready .hero-visual {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     translate: none !important;
+    transform: none !important;
+    contain: strict !important;
+    overflow: hidden !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual .hero-mark {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-half-size)) !important;
+    translate: 0 -50% !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual__field {
+    background: radial-gradient(
+      circle var(--hero-mobile-half-size) at 0% 55%,
+      rgba(13, 77, 79, 0.3),
+      rgba(13, 77, 79, 0.08) 48%,
+      transparent 72%
+    ) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--one {
+    background: radial-gradient(
+      circle clamp(450px, 95vw, 590px) at 0% 55%,
+      transparent calc(100% - 1px),
+      rgba(255, 255, 255, 0.1) 100%,
+      transparent calc(100% + 1px)
+    ) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--two {
+    background: radial-gradient(
+      circle clamp(540px, 112.5vw, 690px) at 0% 55%,
+      transparent calc(100% - 1px),
+      rgba(255, 255, 255, 0.065) 100%,
+      transparent calc(100% + 1px)
+    ) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--one::after {
+    right: auto !important;
+    left: 11% !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--two::after {
+    right: auto !important;
+    left: 5% !important;
   }
 }
 
@@ -105,6 +234,13 @@
   html[lang="ar"][dir="rtl"] body .site-header .site-header__inner > .brand {
     right: var(--header-edge-gutter) !important;
     left: auto !important;
+    direction: ltr !important;
+    overflow: visible !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .site-header .site-header__inner > .brand img {
+    direction: ltr !important;
+    overflow: visible !important;
   }
 
   html[lang="ar"][dir="rtl"] body .site-header .site-header__inner > .menu-button {
@@ -113,62 +249,16 @@
   }
 }
 
-@media (max-width: 700px) {
-  .hero-visual {
-    top: 59% !important;
-    right: -58vw !important;
-    width: clamp(740px, 155vw, 960px) !important;
-    min-height: clamp(700px, 148vw, 920px) !important;
-  }
-
-  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero-visual {
-    right: auto !important;
-    left: -58vw !important;
-  }
-
-  .hero-mark {
-    width: min(100%, 900px) !important;
-  }
-
-  .hero-orbit--one {
-    width: min(142vw, 860px) !important;
-    height: min(142vw, 860px) !important;
-  }
-
-  .hero-orbit--two {
-    width: min(172vw, 1040px) !important;
-    height: min(172vw, 1040px) !important;
-  }
-}
-
 @media (max-width: 420px) {
   .site-header__inner {
     --header-edge-gutter: 0.6rem;
   }
 
-  .hero-visual {
-    top: 60% !important;
-    right: -58vw !important;
-    width: 740px !important;
-    min-height: 740px !important;
-  }
-
-  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero-visual {
-    right: auto !important;
-    left: -58vw !important;
-  }
-
-  .hero-mark {
-    width: 700px !important;
-  }
-
-  .hero-orbit--one {
-    width: 790px !important;
-    height: 790px !important;
-  }
-
-  .hero-orbit--two {
-    width: 960px !important;
-    height: 960px !important;
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: 820px;
+    --hero-mobile-half-size: 410px;
   }
 }
