@@ -1,12 +1,14 @@
-/* DISC-37 v9 responsive Hero composition.
-   The legacy mobile Hero arc is removed because its negative percentage offset
-   expands document width and shifts the Arabic viewport. The actual AKRETUM
-   mark is gigantic, vertically centered, and half-visible at the physical edge
-   inside a contained overlay. EN and AR use identical mirrored geometry.
-   Header and Hero logos have no hover, scale, filter, or parallax movement.
+/* DISC-37 v10 responsive Hero composition.
+   The desktop Hero visual no longer follows pointer parallax, so orbit rotation
+   remains stable during mouse movement. Mobile uses the same real rotating
+   orbit rings inside a contained overlay. The mobile mark is reduced by about
+   five percent while preserving the half-visible mirrored edge composition.
 */
 
-.hero-visual {
+.hero-visual,
+.hero-visual:hover,
+.hero-visual:focus-within {
+  transform: none !important;
   transition: none !important;
 }
 
@@ -17,9 +19,18 @@
   transition: none !important;
 }
 
-@keyframes mobile-orbit-breathe {
-  0%, 100% { opacity: 0.38; }
-  50% { opacity: 0.72; }
+.hero-orbit--one,
+.hero-visual:hover .hero-orbit--one,
+.hero-visual:focus-within .hero-orbit--one {
+  animation: orbit 28s linear infinite !important;
+  animation-play-state: running !important;
+}
+
+.hero-orbit--two,
+.hero-visual:hover .hero-orbit--two,
+.hero-visual:focus-within .hero-orbit--two {
+  animation: orbit 42s linear infinite reverse !important;
+  animation-play-state: running !important;
 }
 
 @media (max-width: 960px) {
@@ -27,8 +38,8 @@
     overflow: clip !important;
   }
 
-  /* This obsolete arc produced exactly 70vw of English overflow and 10vw of
-     Arabic overflow. The contained rings below replace it. */
+  /* This obsolete arc produced horizontal overflow and shifted the Arabic
+     viewport. The contained rotating rings below replace it. */
   .hero::after,
   html[lang="ar"][dir="rtl"] body .hero::after {
     content: none !important;
@@ -43,8 +54,12 @@
   .is-ready .hero-visual,
   .hero-visual:hover,
   .hero-visual:focus-within {
-    --hero-mobile-mark-size: clamp(820px, 175vw, 1080px);
-    --hero-mobile-half-size: clamp(410px, 87.5vw, 540px);
+    --hero-mobile-mark-size: clamp(780px, 165vw, 1020px);
+    --hero-mobile-half-size: clamp(390px, 82.5vw, 510px);
+    --hero-mobile-orbit-one-size: clamp(840px, 178vw, 1100px);
+    --hero-mobile-orbit-one-half: clamp(420px, 89vw, 550px);
+    --hero-mobile-orbit-two-size: clamp(1000px, 212vw, 1300px);
+    --hero-mobile-orbit-two-half: clamp(500px, 106vw, 650px);
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
@@ -94,45 +109,50 @@
   }
 
   .hero-orbit {
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    translate: none !important;
-    transform: none !important;
+    position: absolute !important;
+    inset: auto !important;
+    top: 55% !important;
+    bottom: auto !important;
+    left: auto !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 50% !important;
+    translate: 0 -50% !important;
+    pointer-events: none !important;
   }
 
-  .hero-orbit--one {
-    background: radial-gradient(
-      circle clamp(450px, 95vw, 590px) at 100% 55%,
-      transparent calc(100% - 1px),
-      rgba(255, 255, 255, 0.1) 100%,
-      transparent calc(100% + 1px)
-    ) !important;
-    animation: mobile-orbit-breathe 7s ease-in-out infinite !important;
+  .hero-orbit--one,
+  .hero-visual:hover .hero-orbit--one,
+  .hero-visual:focus-within .hero-orbit--one {
+    right: calc(-1 * var(--hero-mobile-orbit-one-half)) !important;
+    width: var(--hero-mobile-orbit-one-size) !important;
+    height: var(--hero-mobile-orbit-one-size) !important;
+    border-style: solid !important;
+    animation: orbit 28s linear infinite !important;
+    animation-play-state: running !important;
   }
 
-  .hero-orbit--two {
-    background: radial-gradient(
-      circle clamp(540px, 112.5vw, 690px) at 100% 55%,
-      transparent calc(100% - 1px),
-      rgba(255, 255, 255, 0.065) 100%,
-      transparent calc(100% + 1px)
-    ) !important;
-    animation: mobile-orbit-breathe 10s ease-in-out infinite reverse !important;
+  .hero-orbit--two,
+  .hero-visual:hover .hero-orbit--two,
+  .hero-visual:focus-within .hero-orbit--two {
+    right: calc(-1 * var(--hero-mobile-orbit-two-half)) !important;
+    width: var(--hero-mobile-orbit-two-size) !important;
+    height: var(--hero-mobile-orbit-two-size) !important;
+    border-style: dashed !important;
+    opacity: 0.5 !important;
+    animation: orbit 42s linear infinite reverse !important;
+    animation-play-state: running !important;
   }
 
   .hero-orbit--one::after {
-    top: 23% !important;
-    right: 11% !important;
-    left: auto !important;
+    top: 18% !important;
+    right: auto !important;
+    left: 11% !important;
   }
 
   .hero-orbit--two::after {
-    top: 71% !important;
-    right: 5% !important;
-    left: auto !important;
+    top: 72% !important;
+    right: auto !important;
+    left: 7% !important;
   }
 
   html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero-visual,
@@ -161,32 +181,28 @@
     ) !important;
   }
 
-  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--one {
-    background: radial-gradient(
-      circle clamp(450px, 95vw, 590px) at 0% 55%,
-      transparent calc(100% - 1px),
-      rgba(255, 255, 255, 0.1) 100%,
-      transparent calc(100% + 1px)
-    ) !important;
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--one,
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual:hover .hero-orbit--one,
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual:focus-within .hero-orbit--one {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-orbit-one-half)) !important;
   }
 
-  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--two {
-    background: radial-gradient(
-      circle clamp(540px, 112.5vw, 690px) at 0% 55%,
-      transparent calc(100% - 1px),
-      rgba(255, 255, 255, 0.065) 100%,
-      transparent calc(100% + 1px)
-    ) !important;
+  html[lang="ar"][dir="rtl"] body .hero .hero-orbit--two,
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual:hover .hero-orbit--two,
+  html[lang="ar"][dir="rtl"] body .hero .hero-visual:focus-within .hero-orbit--two {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-orbit-two-half)) !important;
   }
 
   html[lang="ar"][dir="rtl"] body .hero .hero-orbit--one::after {
-    right: auto !important;
-    left: 11% !important;
+    right: 11% !important;
+    left: auto !important;
   }
 
   html[lang="ar"][dir="rtl"] body .hero .hero-orbit--two::after {
-    right: auto !important;
-    left: 5% !important;
+    right: 7% !important;
+    left: auto !important;
   }
 }
 
@@ -258,7 +274,18 @@
   .is-ready .hero-visual,
   .hero-visual:hover,
   .hero-visual:focus-within {
-    --hero-mobile-mark-size: 820px;
-    --hero-mobile-half-size: 410px;
+    --hero-mobile-mark-size: 780px;
+    --hero-mobile-half-size: 390px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit--one,
+  .hero-orbit--two,
+  .hero-visual:hover .hero-orbit--one,
+  .hero-visual:hover .hero-orbit--two,
+  .hero-visual:focus-within .hero-orbit--one,
+  .hero-visual:focus-within .hero-orbit--two {
+    animation: none !important;
   }
 }
