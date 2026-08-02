@@ -2,7 +2,12 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const supportsObserver = 'IntersectionObserver' in window;
   const rtl = document.documentElement.dir === 'rtl';
+  const entryHasReachedViewport = (entry) => (
+    entry.isIntersecting ||
+    entry.boundingClientRect.top < (window.innerHeight || document.documentElement.clientHeight) * 1.1
+  );
   document.body.dataset.marketingExperience = 'disc37';
+  document.body.dataset.marketingPerformance = 'v16';
 
   const groups = [
     { selector: '.hero-proof span, .hero-visual__caption span', variant: 'soft', step: 65 },
@@ -18,13 +23,13 @@
     { selector: '.footer__brand, .footer__nav a, .footer__bottom p:not(:last-child)', variant: 'soft', step: 60 }
   ];
 
-  const nodes = [];
+  const nodes = new Set();
   groups.forEach(({ selector, variant, step }) => {
     document.querySelectorAll(selector).forEach((node, index) => {
       if (node.closest('.hero') && !node.matches('.hero-proof span, .hero-visual__caption span')) return;
       node.dataset.microMotion = variant;
       node.style.setProperty('--micro-delay', `${Math.min(index, 7) * step}ms`);
-      nodes.push(node);
+      nodes.add(node);
     });
   });
 
@@ -35,7 +40,13 @@
     copyright.dataset.identityVisible = 'true';
   });
 
-  const reveal = (node) => node.classList.add('micro-visible');
+  const reveal = (node) => {
+    if (node.classList.contains('micro-visible')) return;
+    node.classList.add('micro-active');
+    node.classList.add('micro-visible');
+    window.setTimeout(() => node.classList.remove('micro-active'), 1100);
+  };
+
   if (reduceMotion || !supportsObserver) {
     nodes.forEach(reveal);
     document.documentElement.dataset.expandedMotion = reduceMotion ? 'reduced' : 'fallback';
@@ -46,7 +57,7 @@
   const observer = new IntersectionObserver(
     (entries, currentObserver) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+        if (!entryHasReachedViewport(entry)) return;
         reveal(entry.target);
         currentObserver.unobserve(entry.target);
       });
@@ -59,14 +70,29 @@
   if (!finePointer) return;
 
   document.querySelectorAll('.story-principles > div, .flow-step, .product-card, .capability-card, .contact-panel').forEach((element) => {
+    let frame = 0;
+    let latestEvent = null;
+
     element.addEventListener('pointermove', (event) => {
-      const rect = element.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      element.style.setProperty('--marketing-x', `${x.toFixed(2)}%`);
-      element.style.setProperty('--marketing-y', `${y.toFixed(2)}%`);
-    });
+      latestEvent = event;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        if (!latestEvent) return;
+        const rect = element.getBoundingClientRect();
+        const x = ((latestEvent.clientX - rect.left) / rect.width) * 100;
+        const y = ((latestEvent.clientY - rect.top) / rect.height) * 100;
+        element.style.setProperty('--marketing-x', `${x.toFixed(2)}%`);
+        element.style.setProperty('--marketing-y', `${y.toFixed(2)}%`);
+      });
+    }, { passive: true });
+
     element.addEventListener('pointerleave', () => {
+      latestEvent = null;
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+      }
       element.style.setProperty('--marketing-x', '50%');
       element.style.setProperty('--marketing-y', '50%');
     });

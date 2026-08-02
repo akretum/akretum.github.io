@@ -1,8 +1,6 @@
-/* DISC-37 v15 shared responsive Hero scale refinement.
-   The desktop mark becomes about six percent larger than v14, while the mobile
-   mark becomes about four percent smaller and remains exactly half visible in
-   both locales. Compact desktop allows a controlled 110% visual-track width so
-   the increase remains visible instead of being capped by the column width.
+/* DISC-37 v16 shared responsive Hero scale refinement.
+   Desktop sizing remains approved from v15. Phone-sized viewports use the
+   requested 590px mark and preserve the exact half-visible mirrored crop.
 */
 
 @media (min-width: 961px) {
@@ -22,8 +20,8 @@
   .is-ready .hero-visual,
   .hero-visual:hover,
   .hero-visual:focus-within {
-    --hero-mobile-mark-size: clamp(660px, 140vw, 860px);
-    --hero-mobile-half-size: clamp(330px, 70vw, 430px);
+    --hero-mobile-mark-size: clamp(590px, 125vw, 780px);
+    --hero-mobile-half-size: clamp(295px, 62.5vw, 390px);
   }
 }
 
@@ -32,7 +30,7 @@
   .is-ready .hero-visual,
   .hero-visual:hover,
   .hero-visual:focus-within {
-    --hero-mobile-mark-size: 660px;
-    --hero-mobile-half-size: 330px;
+    --hero-mobile-mark-size: 590px;
+    --hero-mobile-half-size: 295px;
   }
 }

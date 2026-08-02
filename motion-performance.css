@@ -1,0 +1,54 @@
+/* DISC-37 v16 motion performance layer.
+   The approved animation names, durations, easing, delays, distances, blur
+   amounts, and visual states remain unchanged. This layer limits compositor
+   promotion to active entrances and pauses continuous Hero work only while the
+   Hero is outside the rendered viewport or the document is hidden.
+*/
+
+.site-header {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+html:not(.no-js):not(.motion-fallback) [data-reveal],
+html:not(.no-js):not(.motion-fallback) [data-motion],
+html:not(.no-js):not(.motion-fallback) [data-micro-motion] {
+  backface-visibility: hidden;
+  will-change: auto !important;
+}
+
+html:not(.no-js):not(.motion-fallback) [data-reveal].reveal-active {
+  will-change: opacity, transform !important;
+}
+
+html:not(.no-js):not(.motion-fallback) [data-motion].motion-active,
+html:not(.no-js):not(.motion-fallback) [data-micro-motion].micro-active {
+  will-change: opacity, transform, filter !important;
+}
+
+.hero-visual,
+.hero-mark,
+.hero-mark__piece,
+.hero-mark__complete,
+.hero-mark__core,
+.hero-orbit,
+.scroll-cue__line::after {
+  backface-visibility: hidden;
+}
+
+.hero.motion-paused .hero-orbit--one,
+.hero.motion-paused .hero-orbit--two,
+.hero.motion-paused .hero-mark__piece,
+.hero.motion-paused .hero-mark__complete,
+.hero.motion-paused .hero-mark__core,
+.hero.motion-paused .scroll-cue__line::after {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not(.no-js):not(.motion-fallback) [data-reveal],
+  html:not(.no-js):not(.motion-fallback) [data-motion],
+  html:not(.no-js):not(.motion-fallback) [data-micro-motion] {
+    will-change: auto !important;
+  }
+}
