@@ -49,7 +49,7 @@ html[lang="ar"][dir="rtl"] :where(h1, h2, h3) {
 }
 
 html[lang="ar"][dir="rtl"] .hero-title {
-  line-height: 1.04;
+  line-height: 1.1;
   font-weight: 750;
 }
 

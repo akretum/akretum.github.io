@@ -192,31 +192,31 @@
     order: initial !important;
     grid-column: 2 !important;
     grid-row: 1 !important;
-    width: clamp(340px, 48vw, 500px) !important;
+    width: clamp(520px, 82vw, 680px) !important;
     height: auto !important;
-    min-height: clamp(390px, 56vw, 520px) !important;
+    min-height: clamp(520px, 78vw, 660px) !important;
     margin: 0 !important;
     justify-self: end !important;
     align-self: center !important;
-    right: -24% !important;
+    right: -50% !important;
     left: auto !important;
     z-index: 1 !important;
     pointer-events: none !important;
   }
 
   .hero-mark {
-    width: min(100%, 430px) !important;
+    width: min(100%, 620px) !important;
     max-width: none !important;
   }
 
   .hero-orbit--one {
-    width: min(47vw, 410px) !important;
-    height: min(47vw, 410px) !important;
+    width: min(78vw, 600px) !important;
+    height: min(78vw, 600px) !important;
   }
 
   .hero-orbit--two {
-    width: min(58vw, 500px) !important;
-    height: min(58vw, 500px) !important;
+    width: min(94vw, 720px) !important;
+    height: min(94vw, 720px) !important;
   }
 
   .hero-visual__caption {
@@ -228,18 +228,25 @@
   .site-header__inner {
     display: flex !important;
     flex-direction: row !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     align-items: center !important;
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
-    padding-inline: clamp(1rem, 4vw, 1.5rem) !important;
+    padding-inline: 0.75rem !important;
   }
 
-  .site-header__inner > .brand,
-  .site-header__inner > .menu-button {
+  .site-header__inner > .brand {
     order: initial !important;
     margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .site-header__inner > .menu-button {
+    order: initial !important;
+    margin-block: 0 !important;
+    margin-inline-start: auto !important;
+    margin-inline-end: 0 !important;
   }
 }
 
@@ -256,23 +263,23 @@
   }
 
   .hero-visual {
-    width: clamp(270px, 66vw, 370px) !important;
-    min-height: clamp(310px, 68vw, 400px) !important;
-    right: -44% !important;
+    width: clamp(460px, 96vw, 560px) !important;
+    min-height: clamp(460px, 92vw, 560px) !important;
+    right: -58% !important;
   }
 
   .hero-mark {
-    width: min(100%, 330px) !important;
+    width: min(100%, 520px) !important;
   }
 
   .hero-orbit--one {
-    width: min(72vw, 330px) !important;
-    height: min(72vw, 330px) !important;
+    width: min(94vw, 520px) !important;
+    height: min(94vw, 520px) !important;
   }
 
   .hero-orbit--two {
-    width: min(86vw, 395px) !important;
-    height: min(86vw, 395px) !important;
+    width: min(116vw, 640px) !important;
+    height: min(116vw, 640px) !important;
   }
 
   .hero-proof {
@@ -282,7 +289,7 @@
 
 @media (max-width: 420px) {
   .site-header__inner {
-    padding-inline: 1rem !important;
+    padding-inline: 0.6rem !important;
   }
 
   .site-header .brand img {
@@ -295,23 +302,23 @@
   }
 
   .hero-visual {
-    width: 255px !important;
-    min-height: 285px !important;
-    right: -50% !important;
+    width: 430px !important;
+    min-height: 430px !important;
+    right: -62% !important;
   }
 
   .hero-mark {
-    width: 235px !important;
+    width: 410px !important;
   }
 
   .hero-orbit--one {
-    width: 265px !important;
-    height: 265px !important;
+    width: 450px !important;
+    height: 450px !important;
   }
 
   .hero-orbit--two {
-    width: 320px !important;
-    height: 320px !important;
+    width: 560px !important;
+    height: 560px !important;
   }
 }
 
