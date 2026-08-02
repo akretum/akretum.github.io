@@ -101,7 +101,7 @@ html[lang="ar"][dir="rtl"] .language-switch[lang="en"] {
   direction: ltr;
   unicode-bidi: isolate;
   font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
-  letter-spacing: 0.04em !important;
+  letter-spacing: 0 !important;
 }
 
 html[lang="ar"][dir="rtl"] :where(
@@ -113,8 +113,25 @@ html[lang="ar"][dir="rtl"] :where(
   unicode-bidi: isolate;
 }
 
+@media (max-width: 700px) {
+  html[lang="ar"][dir="rtl"] .hero-title {
+    font-size: clamp(2.75rem, 11.7vw, 3.15rem) !important;
+    line-height: 1.16 !important;
+    text-wrap: nowrap !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title__line {
+    line-height: 1.16 !important;
+  }
+}
+
 @media (max-width: 420px) {
   html[lang="ar"][dir="rtl"] .hero-title {
-    font-size: clamp(2.75rem, 12.4vw, 3.2rem) !important;
+    font-size: clamp(2.62rem, 11.5vw, 2.95rem) !important;
+    line-height: 1.18 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title__line {
+    line-height: 1.18 !important;
   }
 }
