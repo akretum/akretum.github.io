@@ -1,0 +1,102 @@
+/* DISC-37 v11 interface polish.
+   This final shared layer makes a small responsive Hero-mark reduction, adds
+   explicit visual breathing room below the mobile Header controls, and renders
+   the footer language switch as a normal navigation link in both locales.
+*/
+
+.footer__nav a {
+  display: inline-flex !important;
+  min-height: 0 !important;
+  align-items: center !important;
+  line-height: inherit !important;
+}
+
+.footer__nav .language-switch {
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: rgba(245, 244, 241, 0.78) !important;
+  font-family: inherit !important;
+  font-size: 0.94rem !important;
+  font-weight: 500 !important;
+  letter-spacing: normal !important;
+  transition: color 0.25s ease !important;
+}
+
+.footer__nav .language-switch:hover,
+.footer__nav .language-switch:focus-visible {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: var(--off) !important;
+}
+
+@media (max-width: 960px) {
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: clamp(750px, 158vw, 980px);
+    --hero-mobile-half-size: clamp(375px, 79vw, 490px);
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --header-height: 92px;
+  }
+
+  .site-header,
+  .site-header.scrolled {
+    height: var(--header-height) !important;
+  }
+
+  .site-header__inner > .brand,
+  .site-header__inner > .brand:hover,
+  .site-header__inner > .brand:focus-visible,
+  .site-header__inner > .menu-button {
+    top: 0.85rem !important;
+    transform: none !important;
+  }
+
+  .footer__nav {
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer__nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, max-content) !important;
+    justify-content: start !important;
+    gap: 1rem 2rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --header-height: 90px;
+  }
+
+  .site-header__inner > .brand,
+  .site-header__inner > .brand:hover,
+  .site-header__inner > .brand:focus-visible,
+  .site-header__inner > .menu-button {
+    top: 0.75rem !important;
+    transform: none !important;
+  }
+
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: 750px;
+    --hero-mobile-half-size: 375px;
+  }
+}
