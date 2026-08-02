@@ -1,7 +1,7 @@
-/* DISC-37 v7 final responsive Hero visibility contract.
+/* DISC-37 v8 final responsive Hero visibility contract.
    The oversized mark is anchored with physical viewport offsets, not percentage
    translation. This keeps a large, recognisable portion visible on every phone.
-   The mark itself has no hover, scale, or pointer-parallax movement.
+   The Hero mark and Header identity have no hover, scale, or parallax movement.
 */
 
 .hero-visual {
@@ -33,6 +33,8 @@
     justify-self: auto !important;
     align-self: auto !important;
     translate: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     z-index: 1 !important;
     pointer-events: none !important;
   }
@@ -79,11 +81,16 @@
   }
 
   .site-header__inner > .brand:hover,
-  .site-header__inner > .brand:focus-visible,
+  .site-header__inner > .brand:focus-visible {
+    transform: translateY(-50%) !important;
+  }
+
+  .site-header__inner > .brand img,
   .site-header__inner > .brand:hover img,
   .site-header__inner > .brand:focus-visible img {
-    transform: translateY(0) !important;
+    transform: none !important;
     filter: none !important;
+    transition: none !important;
   }
 
   .site-header__inner > .menu-button {
