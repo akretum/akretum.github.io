@@ -1,5 +1,6 @@
-/* DISC-34 — AKRETUM website alignment with the approved Inter + Cairo design system.
-   Shared geometry is identical in EN/AR; only direction and language shaping differ.
+/* DISC-37 shared design-system alignment.
+   Every geometry and interaction rule in this file is locale-neutral.
+   Arabic font shaping and RTL mirroring live in Arabic-only files.
 */
 
 :root {
@@ -8,27 +9,11 @@
   --section-scroll-offset: var(--header-height, 76px);
 }
 
-html[lang="en"] body {
-  font-family: var(--font-latin);
-}
-
-html[lang="ar"][dir="rtl"] body {
-  font-family: var(--font-arabic) !important;
-}
-
-html[lang="ar"][dir="rtl"] :where(button, input, textarea, select) {
-  font-family: var(--font-arabic);
-}
-
-html[lang="en"] :where(button, input, textarea, select) {
-  font-family: var(--font-latin);
-}
-
 section[id] {
   scroll-margin-top: var(--section-scroll-offset) !important;
 }
 
-/* One section-label grammar in both languages. Arabic is mirrored, not redesigned. */
+/* One section-label grammar in both languages. */
 :where(.story__heading, .section-heading, .systems__intro, .portfolio__heading, .contact-panel) .eyebrow {
   display: block !important;
   width: fit-content !important;
@@ -47,18 +32,6 @@ section[id] {
   text-transform: uppercase !important;
 }
 
-html[lang="ar"][dir="rtl"] :where(.story__heading, .section-heading, .systems__intro, .portfolio__heading, .contact-panel) .eyebrow {
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] :where(.story__heading, .section-heading, .systems__intro, .portfolio__heading, .contact-panel) .eyebrow::before,
-html[lang="ar"][dir="rtl"] :where(.story__heading, .section-heading, .systems__intro, .portfolio__heading, .contact-panel) .eyebrow::after {
-  content: none !important;
-  display: none !important;
-}
-
 :where(.section-heading, .systems__intro) .section-index {
   display: block !important;
   min-height: 0 !important;
@@ -74,114 +47,7 @@ html[lang="ar"][dir="rtl"] :where(.story__heading, .section-heading, .systems__i
   opacity: 0.68;
 }
 
-/* Preserve the accepted English editorial grids and mirror them for Arabic. */
-html[lang="ar"][dir="rtl"] .story__grid {
-  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.18fr) !important;
-  direction: rtl;
-}
-
-html[lang="ar"][dir="rtl"] .story__heading {
-  position: static !important;
-  top: auto !important;
-  display: block !important;
-  width: 100% !important;
-  justify-self: stretch !important;
-  align-items: initial !important;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .story__heading .eyebrow {
-  margin-bottom: clamp(1.2rem, 2vw, 1.8rem) !important;
-}
-
-html[lang="ar"][dir="rtl"] .story__content {
-  justify-self: stretch !important;
-}
-
-html[lang="ar"][dir="rtl"] .section-heading {
-  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 0.66fr) !important;
-  width: 100% !important;
-  margin-inline: 0 !important;
-  justify-items: stretch !important;
-  align-items: start;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .section-heading > div {
-  display: block !important;
-  width: auto !important;
-}
-
-html[lang="ar"][dir="rtl"] .section-heading h2 {
-  width: auto !important;
-  max-inline-size: 11em !important;
-  justify-self: stretch !important;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro {
-  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 0.66fr) !important;
-  width: 100% !important;
-  margin-inline: 0 !important;
-  justify-items: stretch !important;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro > div:first-child {
-  display: block !important;
-  width: auto !important;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro > div:last-child {
-  width: auto !important;
-  justify-self: stretch !important;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading {
-  grid-template-columns: minmax(290px, 0.42fr) minmax(0, 0.58fr) !important;
-  width: 100% !important;
-  margin-inline: 0 !important;
-  justify-items: stretch !important;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading > div {
-  display: block !important;
-  width: auto !important;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading .eyebrow {
-  margin-bottom: clamp(1.2rem, 2vw, 1.8rem) !important;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading > p {
-  justify-self: stretch !important;
-  align-self: end;
-}
-
-/* Remove Arabic-only decorative heading rules; shared interactions own the accent. */
-html[lang="ar"][dir="rtl"] :where(
-  .story__heading h2,
-  .section-heading h2,
-  .systems__intro h2,
-  .portfolio__heading h2,
-  .contact-panel h2
-)::after {
-  content: "";
-  display: block;
-  position: absolute;
-  inset-inline-start: 0;
-  bottom: -0.3em;
-  width: min(92px, 24%);
-  height: 3px;
-  margin: 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #d9be7c, #0d5b5d);
-  opacity: 0;
-  transform: scaleX(0.35);
-  transform-origin: right;
-}
-
-/* Every interactive surface gets a visible, differentiated response. */
+/* Shared interaction vocabulary. */
 .brand img,
 .footer__brand img,
 .hero-mark,
@@ -206,6 +72,7 @@ html[lang="ar"][dir="rtl"] :where(
 .hero-proof span {
   transition: transform 260ms var(--shared-ease), color 220ms ease, opacity 220ms ease;
 }
+
 .hero-proof span:hover {
   transform: translateY(-3px);
   color: #f7df9e;
@@ -215,14 +82,21 @@ html[lang="ar"][dir="rtl"] :where(
 .hero-visual:hover .hero-mark {
   transform: translate3d(var(--parallax-x, 0), var(--parallax-y, 0), 0) scale(1.025);
 }
-.hero-visual:hover .hero-orbit--one { transform: rotate(9deg) scale(1.03); }
-.hero-visual:hover .hero-orbit--two { transform: rotate(-12deg) scale(0.98); }
+
+.hero-visual:hover .hero-orbit--one {
+  transform: rotate(9deg) scale(1.03);
+}
+
+.hero-visual:hover .hero-orbit--two {
+  transform: rotate(-12deg) scale(0.98);
+}
 
 .scroll-cue:hover,
 .scroll-cue:focus-visible {
   transform: translateY(4px);
   color: #f7df9e;
 }
+
 .scroll-cue:hover .scroll-cue__line,
 .scroll-cue:focus-visible .scroll-cue__line {
   transform: scaleY(1.35);
@@ -240,21 +114,34 @@ html[lang="ar"][dir="rtl"] :where(
   transform: translateY(-2px) !important;
 }
 
-:where(.story, .portfolio) .eyebrow { color: #0d5b5d !important; }
-:where(.capabilities, .systems, .contact) .eyebrow { color: rgba(245, 244, 241, 0.82) !important; }
-:where(.story, .portfolio):hover .eyebrow { color: #1f7a5c !important; }
-:where(.capabilities, .systems, .contact):hover .eyebrow { color: #f7df9e !important; }
+:where(.story, .portfolio) .eyebrow {
+  color: #0d5b5d !important;
+}
+
+:where(.capabilities, .systems, .contact) .eyebrow {
+  color: rgba(245, 244, 241, 0.82) !important;
+}
+
+:where(.story, .portfolio):hover .eyebrow {
+  color: #1f7a5c !important;
+}
+
+:where(.capabilities, .systems, .contact):hover .eyebrow {
+  color: #f7df9e !important;
+}
 
 .product-card__mark,
 .capability-card__number,
 .flow-step__number {
   transition: transform 320ms var(--shared-ease), color 220ms ease, filter 320ms ease;
 }
+
 .product-card:hover .product-card__mark,
 .product-card:focus-within .product-card__mark {
   transform: translateY(-4px) scale(1.05);
   filter: drop-shadow(0 10px 18px rgba(13, 91, 93, 0.16));
 }
+
 .capability-card:hover .capability-card__number,
 .capability-card:focus-visible .capability-card__number,
 .flow-step:hover .flow-step__number,
@@ -268,20 +155,13 @@ html[lang="ar"][dir="rtl"] :where(
 .footer__bottom {
   transition: border-color 300ms ease, background 300ms ease;
 }
+
 .site-header:hover .site-header__inner,
 .footer:hover .footer__top {
   border-color: rgba(217, 190, 124, 0.2);
 }
 
 @media (max-width: 760px) {
-  html[lang="ar"][dir="rtl"] :where(.story__grid, .section-heading, .systems__intro, .portfolio__heading) {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(.section-heading, .systems__intro, .portfolio__heading) {
-    gap: clamp(1.4rem, 5vw, 2.25rem) !important;
-  }
-
   :where(.story__heading, .section-heading, .systems__intro, .portfolio__heading, .contact-panel) .eyebrow {
     font-size: 0.7rem !important;
   }

@@ -1,6 +1,6 @@
-/* DISC-37 shared Hero parity contract.
-   English and Arabic use the same geometry, scale, viewport coverage, and
-   animation. Arabic physical placement is mirrored only by hero-rtl-final.css.
+/* DISC-37 shared Hero contract.
+   English and Arabic use the same geometry, scale, viewport coverage, rings,
+   and animation. Arabic physical placement is mirrored later by RTL CSS only.
 */
 
 .hero {
@@ -8,7 +8,6 @@
   min-height: 100svh !important;
 }
 
-/* Restore the approved two-ring motion and one amber node per ring. */
 .hero-orbit--one {
   animation: orbit 28s linear infinite !important;
 }
@@ -30,7 +29,6 @@
   box-shadow: 0 0 18px rgba(224, 167, 47, 0.75) !important;
 }
 
-/* Keep the original three-part assembly animation explicit. */
 .is-ready .hero-mark__piece--one {
   animation: assemble-one 1.65s var(--ease) 0.15s forwards !important;
 }
@@ -49,6 +47,59 @@
 
 .is-ready .hero-mark__core {
   animation: core-arrival 0.8s var(--ease) 1.55s forwards, core-pulse 3.2s ease-in-out 2.4s infinite !important;
+}
+
+@media (min-width: 961px) {
+  .hero__grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.96fr) minmax(430px, 1.04fr) !important;
+    gap: clamp(4rem, 7vw, 8rem) !important;
+    align-items: center !important;
+  }
+
+  .hero__copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    max-width: 760px !important;
+    justify-self: stretch !important;
+  }
+
+  .hero-visual {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-height: 560px !important;
+    margin: 0 !important;
+    justify-self: stretch !important;
+    right: auto !important;
+    left: auto !important;
+  }
+
+  .hero-mark {
+    width: min(100%, 510px) !important;
+  }
+
+  .hero-orbit--one {
+    width: 450px !important;
+    height: 450px !important;
+  }
+
+  .hero-orbit--two {
+    width: 560px !important;
+    height: 560px !important;
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1240px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr) !important;
+    gap: 3.5rem !important;
+  }
+
+  .hero-mark {
+    width: min(100%, 430px) !important;
+  }
 }
 
 @media (max-width: 960px) {

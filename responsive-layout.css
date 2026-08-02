@@ -1,24 +1,7 @@
-/* DISC-37 responsive layout system.
-   This file is loaded last and owns compact and mobile geometry.
-   Desktop composition remains in the approved base styles.
+/* DISC-37 locale-neutral responsive layout.
+   English and Arabic use these exact breakpoints, dimensions, grids, and gaps.
+   Arabic direction is applied later by arabic-mobile-rtl.css.
 */
-
-@media (min-width: 961px) {
-  html[lang="ar"][dir="rtl"] body {
-    font-size: 17px;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__content > p:not(.story__lead),
-    .systems__lead,
-    .capability-card p,
-    .flow-step p,
-    .product-card > p,
-    .contact-panel__content > p:not(.eyebrow)
-  ) {
-    line-height: 1.85 !important;
-  }
-}
 
 @media (max-width: 960px) {
   :root {
@@ -74,54 +57,7 @@
   }
 
   .hero {
-    min-height: auto !important;
-    display: block !important;
-    padding: calc(var(--header-height) + 2.75rem) 0 4.5rem !important;
     overflow: hidden !important;
-  }
-
-  .hero__grid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: clamp(1.75rem, 5vw, 2.75rem) !important;
-    align-items: start !important;
-  }
-
-  .hero__copy {
-    position: relative !important;
-    inset: auto !important;
-    order: 1 !important;
-    width: 100% !important;
-    max-width: 42rem !important;
-    justify-self: start !important;
-  }
-
-  .hero-visual {
-    position: relative !important;
-    inset: auto !important;
-    order: 2 !important;
-    width: min(100%, 300px) !important;
-    height: auto !important;
-    min-height: clamp(230px, 34vw, 300px) !important;
-    margin-inline: auto !important;
-    opacity: 1 !important;
-    pointer-events: none !important;
-    transform: none !important;
-  }
-
-  .hero-mark {
-    width: min(58vw, 250px) !important;
-    max-width: 100% !important;
-  }
-
-  .hero-orbit--one {
-    width: 270px !important;
-    height: 270px !important;
-  }
-
-  .hero-orbit--two {
-    width: 320px !important;
-    height: 320px !important;
   }
 
   .hero-title {
@@ -165,11 +101,7 @@
   .story__grid,
   .section-heading,
   .systems__intro,
-  .portfolio__heading,
-  html[lang="ar"][dir="rtl"] .story__grid,
-  html[lang="ar"][dir="rtl"] .section-heading,
-  html[lang="ar"][dir="rtl"] .systems__intro,
-  html[lang="ar"][dir="rtl"] .portfolio__heading {
+  .portfolio__heading {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) !important;
     gap: clamp(1.5rem, 4vw, 2.25rem) !important;
@@ -186,15 +118,7 @@
   .systems__intro > div:first-child,
   .systems__intro > div:last-child,
   .portfolio__heading > div,
-  .portfolio__heading > p,
-  html[lang="ar"][dir="rtl"] .story__heading,
-  html[lang="ar"][dir="rtl"] .story__content,
-  html[lang="ar"][dir="rtl"] .section-heading > div,
-  html[lang="ar"][dir="rtl"] .section-heading > h2,
-  html[lang="ar"][dir="rtl"] .systems__intro > div:first-child,
-  html[lang="ar"][dir="rtl"] .systems__intro > div:last-child,
-  html[lang="ar"][dir="rtl"] .portfolio__heading > div,
-  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
+  .portfolio__heading > p {
     position: static !important;
     grid-column: 1 !important;
     width: 100% !important;
@@ -284,7 +208,6 @@
     max-width: none !important;
     min-height: 0 !important;
     scroll-snap-align: none !important;
-    transform: none !important;
   }
 
   .capability-card,
@@ -384,73 +307,6 @@
     max-width: none !important;
     margin-inline: auto !important;
   }
-
-  html[lang="ar"][dir="rtl"] .hero__copy,
-  html[lang="ar"][dir="rtl"] .hero-title,
-  html[lang="ar"][dir="rtl"] .hero-title__line,
-  html[lang="ar"][dir="rtl"] .hero .eyebrow,
-  html[lang="ar"][dir="rtl"] .hero .lead,
-  html[lang="ar"][dir="rtl"] .story__heading,
-  html[lang="ar"][dir="rtl"] .story__content,
-  html[lang="ar"][dir="rtl"] .section-heading,
-  html[lang="ar"][dir="rtl"] .systems__intro,
-  html[lang="ar"][dir="rtl"] .portfolio__heading,
-  html[lang="ar"][dir="rtl"] .contact-panel {
-    text-align: right !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero__copy {
-    justify-self: end !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero-visual {
-    left: auto !important;
-    right: auto !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero-title {
-    max-width: 9ch !important;
-    font-size: clamp(3.25rem, 8vw, 4.6rem) !important;
-    line-height: 1.08 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__heading h2,
-    .section-heading h2,
-    .systems__intro h2,
-    .portfolio__heading h2,
-    .contact-panel h2
-  ) {
-    max-width: 12ch !important;
-    line-height: 1.12 !important;
-    letter-spacing: -0.02em !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__lead,
-    .story__content > p:not(.story__lead),
-    .systems__lead,
-    .capability-card p,
-    .flow-step p,
-    .product-card > p,
-    .contact-panel__content > p:not(.eyebrow)
-  ) {
-    line-height: 1.82 !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story-principles,
-    .capability-grid,
-    .system-flow,
-    .product-grid,
-    .product-card__meta,
-    .product-card__footer,
-    .contact-actions,
-    .footer__nav
-  ) {
-    direction: rtl !important;
-  }
 }
 
 @media (max-width: 700px) {
@@ -463,34 +319,6 @@
   .system-flow,
   .product-grid {
     grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  .hero {
-    padding-top: calc(var(--header-height) + 1.75rem) !important;
-    padding-bottom: 3.75rem !important;
-  }
-
-  .hero__grid {
-    gap: 1.5rem !important;
-  }
-
-  .hero-visual {
-    width: min(100%, 230px) !important;
-    min-height: 205px !important;
-  }
-
-  .hero-mark {
-    width: min(56vw, 190px) !important;
-  }
-
-  .hero-orbit--one {
-    width: 215px !important;
-    height: 215px !important;
-  }
-
-  .hero-orbit--two {
-    width: 255px !important;
-    height: 255px !important;
   }
 
   .hero-title {
@@ -528,10 +356,7 @@
     font-size: clamp(1.2rem, 5.2vw, 1.45rem) !important;
   }
 
-  .capability-card {
-    min-height: 0 !important;
-  }
-
+  .capability-card,
   .flow-step {
     min-height: 0 !important;
   }
@@ -544,24 +369,6 @@
   .footer__bottom {
     grid-template-columns: minmax(0, 1fr) !important;
     gap: 1rem !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero-title {
-    max-width: 8.5ch !important;
-    font-size: clamp(2.75rem, 11.5vw, 3.55rem) !important;
-    line-height: 1.1 !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__heading h2,
-    .section-heading h2,
-    .systems__intro h2,
-    .portfolio__heading h2,
-    .contact-panel h2
-  ) {
-    max-width: 10.5ch !important;
-    font-size: clamp(2.35rem, 9.8vw, 3rem) !important;
-    line-height: 1.16 !important;
   }
 }
 
@@ -581,10 +388,6 @@
 
   .hero-title {
     font-size: clamp(2.8rem, 13.5vw, 3.65rem) !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero-title {
-    font-size: clamp(2.5rem, 11.5vw, 3.15rem) !important;
   }
 
   .product-card__footer {

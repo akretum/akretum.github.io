@@ -1,4 +1,6 @@
-/* DISC-24 — bilingual presentation, language controls, and expanded motion coverage. */
+/* DISC-37 shared bilingual controls and motion coverage.
+   Locale-specific direction is intentionally excluded from this file.
+*/
 
 .language-switch {
   display: inline-flex;
@@ -33,7 +35,6 @@
   padding-block: 0.34rem;
 }
 
-/* Every meaningful leaf group receives a restrained secondary entrance. */
 html:not(.no-js) [data-micro-motion] {
   opacity: 0;
   transform: translate3d(0, 12px, 0);
@@ -63,7 +64,6 @@ html:not(.no-js) [data-micro-motion].micro-visible {
   filter: none;
 }
 
-/* Fine-grained hover language for previously static content. */
 .eyebrow,
 .section-index,
 .hero-proof span,
@@ -216,84 +216,10 @@ section:hover > .shell .eyebrow,
   transform: translateY(-2px);
 }
 
-/* Arabic: maintain the identity while providing a deliberate RTL reading flow. */
-html[dir="rtl"] body {
-  direction: rtl;
-  text-align: right;
-}
-
-html[dir="rtl"] .site-header__inner,
-html[dir="rtl"] .footer__top,
-html[dir="rtl"] .footer__bottom,
-html[dir="rtl"] .hero-actions,
-html[dir="rtl"] .contact-actions,
-html[dir="rtl"] .product-card__meta,
-html[dir="rtl"] .product-card__footer {
-  direction: rtl;
-}
-
-html[dir="rtl"] .site-nav,
-html[dir="rtl"] .footer__nav {
-  direction: rtl;
-}
-
-html[dir="rtl"] .hero-title,
-html[dir="rtl"] .story__heading h2,
-html[dir="rtl"] .section-heading h2,
-html[dir="rtl"] .systems__intro h2,
-html[dir="rtl"] .portfolio__heading h2,
-html[dir="rtl"] .contact-panel h2 {
-  letter-spacing: -0.035em;
-  line-height: 1.03;
-}
-
-html[dir="rtl"] .hero-title {
-  max-width: 10ch;
-}
-
-html[dir="rtl"] .story-principles > div {
-  text-align: right;
-}
-
-html[dir="rtl"] .capability-card__arrow,
-html[dir="rtl"] .button-arrow,
-html[dir="rtl"] .product-card__footer a span[aria-hidden="true"] {
-  display: inline-block;
-  transform: scaleX(-1);
-}
-
-html[dir="rtl"] .product-card__footer a::after,
-html[dir="rtl"] .site-nav a::after,
-html[dir="rtl"] .footer__nav a::after {
-  transform-origin: left;
-}
-
-html[dir="rtl"] .product-card:hover h3,
-html[dir="rtl"] .capability-card:hover h3,
-html[dir="rtl"] .story-principles > div:hover strong {
-  transform: translateX(-4px);
-}
-
 @media (max-width: 760px) {
   .language-switch {
     width: fit-content;
     min-width: 88px;
-  }
-
-  html[dir="rtl"] .site-nav {
-    text-align: right;
-  }
-
-  html[dir="rtl"] .hero-title {
-    max-width: 9ch;
-    font-size: clamp(3.25rem, 16vw, 4.8rem);
-  }
-
-  html[dir="rtl"] .hero .lead,
-  html[dir="rtl"] .story__lead,
-  html[dir="rtl"] .portfolio__heading > p,
-  html[dir="rtl"] .contact-panel__content > p {
-    line-height: 1.85;
   }
 }
 

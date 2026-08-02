@@ -1,22 +1,46 @@
-/* DISC-26 — Arabic-only typography, RTL composition, and interaction refinement.
-   The English page does not load this file.
+/* DISC-37 Arabic typography only.
+   Geometry, spacing, component composition, and responsive behavior are owned
+   by the same shared styles used by English. This file changes type shaping only.
 */
 
-html[lang="ar"][dir="rtl"] body {
-  --ar-meta-radius: 999px;
-  --ar-intro-width: 1120px;
-  font-family: "SF Arabic", "Segoe UI", Tahoma, "Noto Sans Arabic", Arial, sans-serif;
-  letter-spacing: 0;
+html[lang="ar"][dir="rtl"] body,
+html[lang="ar"][dir="rtl"] :where(button, input, textarea, select) {
+  font-family: "Cairo", sans-serif !important;
+  font-synthesis: none;
   font-kerning: normal;
   font-variant-ligatures: common-ligatures contextual;
 }
 
-html[lang="ar"][dir="rtl"] :where(h1, h2, h3, .eyebrow, .section-index, .status-pill, .product-card__meta, .capability-card__type) {
+html[lang="ar"][dir="rtl"] :where(
+  h1,
+  h2,
+  h3,
+  p,
+  .eyebrow,
+  .section-index,
+  .status-pill,
+  .product-card__meta,
+  .product-card__footer,
+  .capability-card__type,
+  .capability-tags
+) {
   letter-spacing: 0 !important;
-  text-transform: none !important;
   word-break: normal;
   overflow-wrap: normal;
   hyphens: none;
+}
+
+html[lang="ar"][dir="rtl"] :where(
+  h1,
+  h2,
+  h3,
+  .eyebrow,
+  .section-index,
+  .status-pill,
+  .product-card__meta,
+  .capability-card__type
+) {
+  text-transform: none !important;
 }
 
 html[lang="ar"][dir="rtl"] :where(h1, h2, h3) {
@@ -25,13 +49,8 @@ html[lang="ar"][dir="rtl"] :where(h1, h2, h3) {
 }
 
 html[lang="ar"][dir="rtl"] .hero-title {
-  line-height: 1.02;
+  line-height: 1.04;
   font-weight: 760;
-  max-inline-size: 8.4em;
-}
-
-html[lang="ar"][dir="rtl"] .hero-title__line {
-  padding-block: 0.035em;
 }
 
 html[lang="ar"][dir="rtl"] :where(
@@ -41,502 +60,44 @@ html[lang="ar"][dir="rtl"] :where(
   .portfolio__heading h2,
   .contact-panel h2
 ) {
-  position: relative;
-  line-height: 1.12;
+  line-height: 1.1;
   font-weight: 750;
-  max-inline-size: 13em;
 }
 
-html[lang="ar"][dir="rtl"] .section-heading h2,
-html[lang="ar"][dir="rtl"] .systems__intro h2 {
-  max-inline-size: 15em;
-}
-
-html[lang="ar"][dir="rtl"] .product-card h3,
-html[lang="ar"][dir="rtl"] .capability-card h3 {
-  line-height: 1.2;
+html[lang="ar"][dir="rtl"] :where(
+  .product-card h3,
+  .capability-card h3,
+  .flow-step strong
+) {
+  line-height: 1.18;
   font-weight: 740;
 }
 
-html[lang="ar"][dir="rtl"] :where(.eyebrow, .section-index) {
-  line-height: 1.45;
-}
-
-html[lang="ar"][dir="rtl"] :where(.status-pill, .product-card__meta > span:first-child, .capability-tags li) {
-  line-height: 1.45;
-  font-weight: 700;
+html[lang="ar"][dir="rtl"] :where(
+  .hero .lead,
+  .story__lead,
+  .story__content > p:not(.story__lead),
+  .systems__lead,
+  .capability-card p,
+  .flow-step p,
+  .product-card > p,
+  .contact-panel__content > p:not(.eyebrow)
+) {
+  line-height: 1.78;
 }
 
 html[lang="ar"][dir="rtl"] .language-switch[lang="en"] {
   direction: ltr;
   unicode-bidi: isolate;
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.04em;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif !important;
+  letter-spacing: 0.04em !important;
 }
 
-html[lang="ar"][dir="rtl"] :where(.section-index, .capability-card__number, .flow-step__number) {
+html[lang="ar"][dir="rtl"] :where(
+  .section-index,
+  .capability-card__number,
+  .flow-step__number
+) {
   direction: ltr;
   unicode-bidi: isolate;
-}
-
-/* One visual grammar for Arabic section metadata. */
-html[lang="ar"][dir="rtl"] :where(
-  .story__heading .eyebrow,
-  .section-heading .eyebrow,
-  .systems__intro .eyebrow,
-  .portfolio__heading .eyebrow,
-  .contact-panel .eyebrow
-) {
-  position: relative;
-  display: inline-flex;
-  width: fit-content;
-  min-height: 34px;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 0;
-  padding: 0.42rem 0.78rem;
-  border: 1px solid rgba(13, 91, 93, 0.2);
-  border-radius: var(--ar-meta-radius);
-  background: rgba(13, 91, 93, 0.055);
-  color: #0d5b5d;
-  font-size: 0.82rem;
-  font-weight: 760;
-  transition:
-    transform 300ms var(--motion-ease),
-    background 260ms ease,
-    border-color 260ms ease,
-    box-shadow 320ms ease,
-    color 260ms ease;
-}
-
-html[lang="ar"][dir="rtl"] :where(
-  .story__heading .eyebrow,
-  .section-heading .eyebrow,
-  .systems__intro .eyebrow,
-  .portfolio__heading .eyebrow,
-  .contact-panel .eyebrow
-)::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: #d9be7c;
-  box-shadow: 0 0 0 5px rgba(217, 190, 124, 0.1);
-  transition: transform 300ms var(--motion-ease), box-shadow 300ms ease;
-}
-
-html[lang="ar"][dir="rtl"] :where(.capabilities, .systems, .contact) .eyebrow {
-  border-color: rgba(245, 244, 241, 0.18);
-  background: rgba(245, 244, 241, 0.055);
-  color: #f5f4f1;
-}
-
-html[lang="ar"][dir="rtl"] :where(.section-heading, .systems__intro) .section-index {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  padding: 0.42rem 0.72rem;
-  border: 1px solid rgba(245, 244, 241, 0.16);
-  border-radius: var(--ar-meta-radius);
-  background: rgba(245, 244, 241, 0.045);
-  color: rgba(245, 244, 241, 0.72);
-  font-size: 0.78rem;
-  font-weight: 700;
-  transition:
-    transform 300ms var(--motion-ease),
-    color 260ms ease,
-    border-color 260ms ease,
-    background 260ms ease;
-}
-
-/* Company: maintain editorial contrast while anchoring eyebrow and heading together. */
-html[lang="ar"][dir="rtl"] .story__grid {
-  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(3.5rem, 7vw, 7rem);
-  align-items: start;
-}
-
-html[lang="ar"][dir="rtl"] .story__heading {
-  position: sticky;
-  top: calc(var(--header-height) + 3rem);
-  display: flex;
-  width: min(100%, 560px);
-  flex-direction: column;
-  align-items: flex-start;
-  justify-self: start;
-  gap: 1.35rem;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .story__heading h2 {
-  margin: 0;
-  max-inline-size: 9.5em;
-}
-
-html[lang="ar"][dir="rtl"] .story__content {
-  width: 100%;
-  max-width: 760px;
-  justify-self: stretch;
-}
-
-html[lang="ar"][dir="rtl"] .story-principles > div {
-  grid-template-columns: 54px minmax(150px, 0.82fr) minmax(0, 1.3fr);
-  border-inline-start: 3px solid transparent;
-  padding-inline: 1rem 0.7rem;
-}
-
-/* Capabilities: metadata and heading now share one RTL anchor. */
-html[lang="ar"][dir="rtl"] .section-heading {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1.4rem;
-  width: min(100%, var(--ar-intro-width));
-  margin-inline: auto;
-  margin-bottom: 4.2rem;
-  justify-items: start;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .section-heading > div {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-html[lang="ar"][dir="rtl"] .section-heading h2 {
-  width: min(100%, 980px);
-  margin: 0;
-  justify-self: start;
-}
-
-/* Process: remove the detached metadata column and create one reading block. */
-html[lang="ar"][dir="rtl"] .systems__intro {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1.45rem;
-  width: min(100%, var(--ar-intro-width));
-  margin-inline: auto;
-  margin-bottom: 5rem;
-  justify-items: start;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro > div:first-child {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro > div:last-child {
-  width: min(100%, 980px);
-  justify-self: start;
-}
-
-html[lang="ar"][dir="rtl"] .systems__intro h2,
-html[lang="ar"][dir="rtl"] .systems__lead {
-  margin-inline: 0;
-}
-
-html[lang="ar"][dir="rtl"] .flow-step::before {
-  left: auto;
-  right: 50%;
-  transform: translateX(50%);
-}
-
-html[lang="ar"][dir="rtl"] .flow-step__number {
-  left: auto;
-  right: 1.5rem;
-}
-
-/* Portfolio: title and explanatory copy now follow one coherent axis. */
-html[lang="ar"][dir="rtl"] .portfolio__heading {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1.65rem;
-  width: min(100%, var(--ar-intro-width));
-  margin-inline: auto;
-  margin-bottom: 4rem;
-  align-items: start;
-  justify-items: start;
-  text-align: right;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading > div {
-  display: flex;
-  width: min(100%, 920px);
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.25rem;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading h2,
-html[lang="ar"][dir="rtl"] .portfolio__heading > p {
-  margin: 0;
-}
-
-html[lang="ar"][dir="rtl"] .portfolio__heading > p {
-  max-width: 760px;
-  justify-self: start;
-}
-
-/* RTL details that should mirror spatially, not only glyph direction. */
-html[lang="ar"][dir="rtl"] .capability-card::after {
-  left: auto;
-  right: 0;
-}
-
-html[lang="ar"][dir="rtl"] .capability-card__arrow {
-  right: auto;
-  left: 2rem;
-}
-
-html[lang="ar"][dir="rtl"] .product-card__footer a span {
-  margin-left: 0;
-  margin-right: 0.3rem;
-}
-
-/* Rich but restrained Arabic hover language. */
-html[lang="ar"][dir="rtl"] section:hover :where(.eyebrow, .section-index),
-html[lang="ar"][dir="rtl"] :where(.eyebrow, .section-index):focus-visible {
-  transform: translateY(-3px);
-  border-color: rgba(217, 190, 124, 0.6);
-  box-shadow: 0 12px 28px rgba(15, 17, 19, 0.1);
-}
-
-html[lang="ar"][dir="rtl"] :where(.capabilities, .systems, .contact):hover .eyebrow {
-  background: rgba(217, 190, 124, 0.11);
-  color: #f7df9e;
-}
-
-html[lang="ar"][dir="rtl"] section:hover .eyebrow::before {
-  transform: scale(1.22);
-  box-shadow: 0 0 0 7px rgba(217, 190, 124, 0.12), 0 0 22px rgba(217, 190, 124, 0.34);
-}
-
-html[lang="ar"][dir="rtl"] :where(
-  .story__heading h2,
-  .section-heading h2,
-  .systems__intro h2,
-  .portfolio__heading h2,
-  .contact-panel h2
-)::after {
-  content: "";
-  display: block;
-  width: clamp(74px, 9vw, 132px);
-  height: 3px;
-  margin-top: 0.8rem;
-  margin-inline-start: 0;
-  border-radius: 99px;
-  background: linear-gradient(90deg, #d9be7c, #0d5b5d);
-  opacity: 0.7;
-  transform: scaleX(0.35);
-  transform-origin: right;
-  transition: transform 520ms var(--motion-ease), opacity 300ms ease, width 420ms var(--motion-ease);
-}
-
-html[lang="ar"][dir="rtl"] :where(.story, .capabilities, .systems, .portfolio, .contact):hover :where(
-  .story__heading h2,
-  .section-heading h2,
-  .systems__intro h2,
-  .portfolio__heading h2,
-  .contact-panel h2
-)::after {
-  width: clamp(108px, 13vw, 190px);
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-html[lang="ar"][dir="rtl"] .story-principles > div:hover,
-html[lang="ar"][dir="rtl"] .story-principles > div:focus-within {
-  border-inline-start-color: #d9be7c;
-  background:
-    radial-gradient(circle at var(--marketing-x, 82%) var(--marketing-y, 50%), rgba(217, 190, 124, 0.11), transparent 36%),
-    rgba(13, 91, 93, 0.045);
-  box-shadow: 0 16px 38px rgba(15, 17, 19, 0.08);
-}
-
-html[lang="ar"][dir="rtl"] .capability-card:hover,
-html[lang="ar"][dir="rtl"] .capability-card:focus-visible {
-  background:
-    radial-gradient(circle at var(--marketing-x, 70%) var(--marketing-y, 40%), rgba(217, 190, 124, 0.13), transparent 32%),
-    rgba(255, 255, 255, 0.05);
-  box-shadow: 0 28px 70px rgba(2, 27, 28, 0.34), inset -3px 0 0 #d9be7c;
-}
-
-html[lang="ar"][dir="rtl"] .capability-tags li {
-  transition:
-    transform 300ms var(--motion-ease),
-    color 240ms ease,
-    background 240ms ease,
-    border-color 240ms ease,
-    box-shadow 300ms ease;
-}
-
-html[lang="ar"][dir="rtl"] .capability-card:hover .capability-tags li,
-html[lang="ar"][dir="rtl"] .capability-card:focus-visible .capability-tags li {
-  transform: translateY(-3px);
-  border-color: rgba(245, 244, 241, 0.7);
-  background: rgba(245, 244, 241, 0.94);
-  color: #0d5b5d;
-  box-shadow: 0 7px 16px rgba(3, 33, 34, 0.18);
-}
-
-html[lang="ar"][dir="rtl"] .capability-card:hover .capability-tags li:nth-child(2) {
-  transform: translateY(-5px);
-}
-
-html[lang="ar"][dir="rtl"] .flow-step:hover,
-html[lang="ar"][dir="rtl"] .flow-step:focus-within {
-  opacity: 1;
-  transform: translateY(-10px);
-  border-color: rgba(217, 190, 124, 0.62);
-  background:
-    radial-gradient(circle at var(--marketing-x, 75%) var(--marketing-y, 32%), rgba(217, 190, 124, 0.12), transparent 38%),
-    rgba(255, 255, 255, 0.035);
-  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.28);
-}
-
-html[lang="ar"][dir="rtl"] .flow-step:hover strong,
-html[lang="ar"][dir="rtl"] .flow-step:focus-within strong {
-  color: #f7df9e;
-  transform: translateX(-4px);
-}
-
-html[lang="ar"][dir="rtl"] .product-card:hover,
-html[lang="ar"][dir="rtl"] .product-card:focus-within {
-  border-color: rgba(13, 91, 93, 0.5);
-  background:
-    radial-gradient(circle at var(--marketing-x, 75%) var(--marketing-y, 24%), rgba(13, 91, 93, 0.09), transparent 34%),
-    rgba(255, 255, 255, 0.62);
-  box-shadow: 0 30px 76px rgba(15, 17, 19, 0.13);
-}
-
-html[lang="ar"][dir="rtl"] .product-card:hover .status-pill,
-html[lang="ar"][dir="rtl"] .product-card:focus-within .status-pill {
-  transform: translateY(-3px) scale(1.025);
-  filter: saturate(1.12);
-  box-shadow: 0 9px 22px rgba(15, 17, 19, 0.12);
-}
-
-html[lang="ar"][dir="rtl"] .contact-panel:hover,
-html[lang="ar"][dir="rtl"] .contact-panel:focus-within {
-  box-shadow: inset 0 0 0 1px rgba(217, 190, 124, 0.22), 0 28px 80px rgba(0, 0, 0, 0.18);
-}
-
-html[lang="ar"][dir="rtl"] .footer__nav a:hover,
-html[lang="ar"][dir="rtl"] .footer__nav a:focus-visible {
-  color: #f7df9e;
-  transform: translateY(-3px);
-}
-
-@media (max-width: 1020px) {
-  html[lang="ar"][dir="rtl"] .story__grid {
-    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
-    gap: 3rem;
-  }
-}
-
-@media (max-width: 760px) {
-  html[lang="ar"][dir="rtl"] .hero-title {
-    max-inline-size: 7.8em;
-    line-height: 1.05;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__heading h2,
-    .section-heading h2,
-    .systems__intro h2,
-    .portfolio__heading h2,
-    .contact-panel h2
-  ) {
-    max-inline-size: 100%;
-    line-height: 1.14;
-  }
-
-  html[lang="ar"][dir="rtl"] .story__grid,
-  html[lang="ar"][dir="rtl"] .section-heading,
-  html[lang="ar"][dir="rtl"] .systems__intro,
-  html[lang="ar"][dir="rtl"] .portfolio__heading {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.6rem;
-  }
-
-  html[lang="ar"][dir="rtl"] .story__heading {
-    position: static;
-    width: 100%;
-    gap: 1rem;
-  }
-
-  html[lang="ar"][dir="rtl"] .story__content,
-  html[lang="ar"][dir="rtl"] .systems__intro > div:last-child,
-  html[lang="ar"][dir="rtl"] .portfolio__heading > div,
-  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
-    width: 100%;
-    max-width: none;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(.section-heading, .systems__intro) > div:first-child {
-    flex-wrap: wrap;
-  }
-
-  html[lang="ar"][dir="rtl"] .story-principles > div {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 0.4rem 0.85rem;
-  }
-
-  html[lang="ar"][dir="rtl"] .story-principles small {
-    grid-column: 2;
-  }
-
-  html[lang="ar"][dir="rtl"] .capability-card__arrow {
-    left: 1.25rem;
-  }
-}
-
-@media (max-width: 420px) {
-  html[lang="ar"][dir="rtl"] .hero-title {
-    line-height: 1.08;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(h2, .product-card h3, .capability-card h3) {
-    text-wrap: pretty;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .story__heading .eyebrow,
-    .section-heading .eyebrow,
-    .systems__intro .eyebrow,
-    .portfolio__heading .eyebrow,
-    .contact-panel .eyebrow,
-    .section-index
-  ) {
-    min-height: 32px;
-    padding: 0.38rem 0.68rem;
-    font-size: 0.76rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[lang="ar"][dir="rtl"] *,
-  html[lang="ar"][dir="rtl"] *::before,
-  html[lang="ar"][dir="rtl"] *::after {
-    scroll-behavior: auto !important;
-  }
-
-  html[lang="ar"][dir="rtl"] :where(
-    .eyebrow,
-    .section-index,
-    .story-principles > div,
-    .capability-card,
-    .capability-tags li,
-    .flow-step,
-    .product-card,
-    .status-pill,
-    .contact-panel,
-    .footer__nav a
-  ) {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
 }
