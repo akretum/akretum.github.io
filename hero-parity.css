@@ -1,11 +1,49 @@
 /* DISC-37 shared Hero contract.
-   English and Arabic use the same geometry, scale, viewport coverage, rings,
-   and animation. Arabic physical placement is mirrored later by RTL CSS only.
+   English and Arabic use the same component geometry and motion. The Arabic
+   layer only reverses the shared start/end track variables and physical sides.
 */
+
+:root {
+  --header-height: 96px;
+}
+
+.site-header,
+.site-header.scrolled {
+  height: var(--header-height) !important;
+}
+
+.site-header.scrolled {
+  --header-height: 78px;
+}
+
+.site-header .brand img {
+  width: clamp(210px, 15vw, 248px) !important;
+  height: auto !important;
+}
 
 .hero {
   min-height: 100vh !important;
   min-height: 100svh !important;
+}
+
+.hero__grid {
+  --hero-copy-track: minmax(0, 0.96fr);
+  --hero-visual-track: minmax(430px, 1.04fr);
+  --hero-track-start: var(--hero-copy-track);
+  --hero-track-end: var(--hero-visual-track);
+  grid-template-columns: var(--hero-track-start) var(--hero-track-end) !important;
+}
+
+.hero-title {
+  width: fit-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+.hero-title__line {
+  width: fit-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
 }
 
 .hero-orbit--one {
@@ -52,7 +90,6 @@
 @media (min-width: 961px) {
   .hero__grid {
     display: grid !important;
-    grid-template-columns: minmax(0, 0.96fr) minmax(430px, 1.04fr) !important;
     gap: clamp(4rem, 7vw, 8rem) !important;
     align-items: center !important;
   }
@@ -93,8 +130,13 @@
 
 @media (min-width: 961px) and (max-width: 1240px) {
   .hero__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr) !important;
+    --hero-copy-track: minmax(0, 1fr);
+    --hero-visual-track: minmax(360px, 0.82fr);
     gap: 3.5rem !important;
+  }
+
+  .site-header .brand img {
+    width: clamp(196px, 18vw, 220px) !important;
   }
 
   .hero-mark {
@@ -103,6 +145,19 @@
 }
 
 @media (max-width: 960px) {
+  :root {
+    --header-height: 88px;
+  }
+
+  .site-header,
+  .site-header.scrolled {
+    height: var(--header-height) !important;
+  }
+
+  .site-header .brand img {
+    width: clamp(184px, 29vw, 210px) !important;
+  }
+
   .hero {
     display: grid !important;
     align-items: center !important;
@@ -112,8 +167,9 @@
   }
 
   .hero__grid {
+    --hero-copy-track: minmax(0, 1.12fr);
+    --hero-visual-track: minmax(180px, 0.88fr);
     display: grid !important;
-    grid-template-columns: minmax(0, 1.12fr) minmax(180px, 0.88fr) !important;
     gap: clamp(0.6rem, 2.2vw, 1.4rem) !important;
     align-items: center !important;
   }
@@ -170,27 +226,19 @@
 
 @media (max-width: 820px) {
   .site-header__inner {
-    display: grid !important;
-    grid-template-columns: auto auto !important;
+    display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
-    padding-inline: 0.9rem !important;
+    padding-inline: clamp(1rem, 4vw, 1.5rem) !important;
   }
 
-  .site-header__inner > .brand {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    justify-self: start !important;
-    margin: 0 !important;
-  }
-
+  .site-header__inner > .brand,
   .site-header__inner > .menu-button {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    justify-self: end !important;
+    order: initial !important;
     margin: 0 !important;
   }
 }
@@ -201,7 +249,8 @@
   }
 
   .hero__grid {
-    grid-template-columns: minmax(0, 1.28fr) minmax(95px, 0.72fr) !important;
+    --hero-copy-track: minmax(0, 1.28fr);
+    --hero-visual-track: minmax(95px, 0.72fr);
     gap: 0 !important;
     align-items: center !important;
   }
@@ -233,11 +282,16 @@
 
 @media (max-width: 420px) {
   .site-header__inner {
-    padding-inline: 0.8rem !important;
+    padding-inline: 1rem !important;
+  }
+
+  .site-header .brand img {
+    width: clamp(168px, 48vw, 190px) !important;
   }
 
   .hero__grid {
-    grid-template-columns: minmax(0, 1.42fr) minmax(78px, 0.58fr) !important;
+    --hero-copy-track: minmax(0, 1.42fr);
+    --hero-visual-track: minmax(78px, 0.58fr);
   }
 
   .hero-visual {

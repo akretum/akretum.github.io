@@ -50,7 +50,15 @@ html[lang="ar"][dir="rtl"] :where(h1, h2, h3) {
 
 html[lang="ar"][dir="rtl"] .hero-title {
   line-height: 1.04;
-  font-weight: 760;
+  font-weight: 750;
+}
+
+html[lang="ar"][dir="rtl"] .hero-title__line {
+  white-space: nowrap !important;
+}
+
+html[lang="ar"][dir="rtl"] .hero .eyebrow {
+  line-height: 1.42;
 }
 
 html[lang="ar"][dir="rtl"] :where(
@@ -60,7 +68,7 @@ html[lang="ar"][dir="rtl"] :where(
   .portfolio__heading h2,
   .contact-panel h2
 ) {
-  line-height: 1.1;
+  line-height: 1.06;
   font-weight: 750;
 }
 
@@ -69,12 +77,15 @@ html[lang="ar"][dir="rtl"] :where(
   .capability-card h3,
   .flow-step strong
 ) {
-  line-height: 1.18;
+  line-height: 1.14;
   font-weight: 740;
 }
 
+html[lang="ar"][dir="rtl"] .hero .lead {
+  line-height: 1.66;
+}
+
 html[lang="ar"][dir="rtl"] :where(
-  .hero .lead,
   .story__lead,
   .story__content > p:not(.story__lead),
   .systems__lead,
@@ -83,7 +94,7 @@ html[lang="ar"][dir="rtl"] :where(
   .product-card > p,
   .contact-panel__content > p:not(.eyebrow)
 ) {
-  line-height: 1.78;
+  line-height: 1.72;
 }
 
 html[lang="ar"][dir="rtl"] .language-switch[lang="en"] {
@@ -100,4 +111,10 @@ html[lang="ar"][dir="rtl"] :where(
 ) {
   direction: ltr;
   unicode-bidi: isolate;
+}
+
+@media (max-width: 420px) {
+  html[lang="ar"][dir="rtl"] .hero-title {
+    font-size: clamp(2.75rem, 12.4vw, 3.2rem) !important;
+  }
 }

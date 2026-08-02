@@ -1,6 +1,6 @@
 /* DISC-37 Arabic RTL mirror only.
-   English owns every shared size, gap, breakpoint, grid ratio, and animation.
-   Arabic changes reading direction and physical left/right placement only.
+   English owns every shared size, gap, breakpoint, and animation. Arabic
+   reverses shared start/end tracks and physical left/right placement only.
 */
 
 html[lang="ar"][dir="rtl"] body {
@@ -24,21 +24,20 @@ html[lang="ar"][dir="rtl"] :where(
   text-align: right;
 }
 
-/* Header and footer are physical mirrors of English. */
+/* Header and footer use the same Flex geometry and mirror by direction. */
 html[lang="ar"][dir="rtl"] .site-header__inner,
 html[lang="ar"][dir="rtl"] .footer__top {
-  direction: ltr !important;
+  direction: rtl !important;
 }
 
-html[lang="ar"][dir="rtl"] .brand,
-html[lang="ar"][dir="rtl"] .footer__brand {
-  order: 2;
-}
-
-html[lang="ar"][dir="rtl"] .site-nav,
-html[lang="ar"][dir="rtl"] .menu-button,
-html[lang="ar"][dir="rtl"] .footer__nav {
-  order: 1;
+html[lang="ar"][dir="rtl"] :where(
+  .brand,
+  .footer__brand,
+  .site-nav,
+  .menu-button,
+  .footer__nav
+) {
+  order: initial !important;
 }
 
 html[lang="ar"][dir="rtl"] :where(.site-nav, .footer__nav) {
@@ -62,7 +61,7 @@ html[lang="ar"][dir="rtl"] .footer__bottom p:last-child {
   text-align: left;
 }
 
-/* Shared editorial grids keep the English geometry and reverse reading order. */
+/* Editorial grids keep the shared tracks and reverse reading order. */
 html[lang="ar"][dir="rtl"] :where(
   .story__grid,
   .section-heading,
@@ -81,8 +80,10 @@ html[lang="ar"][dir="rtl"] :where(
   direction: rtl;
 }
 
-/* Hero uses the same grid and scale, with columns mirrored physically. */
+/* Reverse the shared Hero tracks, not merely the child positions. */
 html[lang="ar"][dir="rtl"] .hero__grid {
+  --hero-track-start: var(--hero-visual-track);
+  --hero-track-end: var(--hero-copy-track);
   direction: ltr !important;
 }
 
@@ -135,7 +136,7 @@ html[lang="ar"][dir="rtl"] .hero-proof span:not(:last-child)::after {
   left: -0.85rem;
 }
 
-/* Directional controls and card accents mirror without changing their dimensions. */
+/* Directional controls and card accents mirror without changing dimensions. */
 html[lang="ar"][dir="rtl"] :where(
   .button-arrow,
   .capability-card__arrow,
@@ -290,21 +291,13 @@ html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion]
 
 @media (max-width: 820px) {
   html[lang="ar"][dir="rtl"] .site-header__inner {
-    direction: ltr !important;
+    direction: rtl !important;
   }
 
-  html[lang="ar"][dir="rtl"] .site-header__inner > .brand {
-    order: initial !important;
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    justify-self: end !important;
-  }
-
+  html[lang="ar"][dir="rtl"] .site-header__inner > .brand,
   html[lang="ar"][dir="rtl"] .site-header__inner > .menu-button {
     order: initial !important;
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    justify-self: start !important;
+    margin: 0 !important;
   }
 
   html[lang="ar"][dir="rtl"] .site-nav {
