@@ -280,7 +280,8 @@ html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion]
 @media (max-width: 960px) {
   html[lang="ar"][dir="rtl"] .hero-visual {
     right: auto !important;
-    left: -50% !important;
+    left: auto !important;
+    translate: -52% 0 !important;
   }
 
   html[lang="ar"][dir="rtl"] .contact-panel__email {
@@ -293,8 +294,6 @@ html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion]
   html[lang="ar"][dir="rtl"] .site-header__inner {
     direction: rtl !important;
     justify-content: flex-start !important;
-    padding-inline-start: 0.25rem !important;
-    padding-inline-end: 0.75rem !important;
   }
 
   html[lang="ar"][dir="rtl"] .site-header__inner > .brand {
@@ -334,25 +333,6 @@ html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion]
   html[lang="ar"][dir="rtl"] .portfolio::before,
   html[lang="ar"][dir="rtl"] .portfolio::after {
     transform-origin: top left;
-  }
-}
-
-@media (max-width: 700px) {
-  html[lang="ar"][dir="rtl"] .hero-visual {
-    right: auto !important;
-    left: -58% !important;
-  }
-}
-
-@media (max-width: 420px) {
-  html[lang="ar"][dir="rtl"] .site-header__inner {
-    padding-inline-start: 0.15rem !important;
-    padding-inline-end: 0.6rem !important;
-  }
-
-  html[lang="ar"][dir="rtl"] .hero-visual {
-    right: auto !important;
-    left: -62% !important;
   }
 }
 

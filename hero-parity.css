@@ -111,6 +111,7 @@
     justify-self: stretch !important;
     right: auto !important;
     left: auto !important;
+    translate: none !important;
   }
 
   .hero-mark {
@@ -198,8 +199,9 @@
     margin: 0 !important;
     justify-self: end !important;
     align-self: center !important;
-    right: -50% !important;
+    right: auto !important;
     left: auto !important;
+    translate: 52% 0 !important;
     z-index: 1 !important;
     pointer-events: none !important;
   }
@@ -265,7 +267,6 @@
   .hero-visual {
     width: clamp(460px, 96vw, 560px) !important;
     min-height: clamp(460px, 92vw, 560px) !important;
-    right: -58% !important;
   }
 
   .hero-mark {
@@ -304,7 +305,6 @@
   .hero-visual {
     width: 430px !important;
     min-height: 430px !important;
-    right: -62% !important;
   }
 
   .hero-mark {
