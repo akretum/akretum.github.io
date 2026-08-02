@@ -1,0 +1,24 @@
+/* DISC-37 v13 shared mobile Hero scale refinement.
+   The mark remains exactly half visible in both locales while becoming about
+   four percent smaller than the v12 composition.
+*/
+
+@media (max-width: 960px) {
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: clamp(720px, 152vw, 940px);
+    --hero-mobile-half-size: clamp(360px, 76vw, 470px);
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-visual,
+  .is-ready .hero-visual,
+  .hero-visual:hover,
+  .hero-visual:focus-within {
+    --hero-mobile-mark-size: 720px;
+    --hero-mobile-half-size: 360px;
+  }
+}
