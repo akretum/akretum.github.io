@@ -1,5 +1,6 @@
-/* DISC-34 — Arabic mobile RTL and official Cairo enforcement.
-   Loaded only by the Arabic page after the shared design-system layer.
+/* DISC-37 Arabic RTL parity and responsive Hero contract.
+   Loaded last on the Arabic page so physical placement, motion direction,
+   decorative balance, and navigation order mirror the English experience.
 */
 
 html[lang="ar"][dir="rtl"] body,
@@ -8,10 +9,82 @@ html[lang="ar"][dir="rtl"] :where(button, input, textarea, select) {
   font-synthesis: none;
 }
 
-html[lang="ar"][dir="rtl"] .hero-title,
-html[lang="ar"][dir="rtl"] .hero-title__line,
-html[lang="ar"][dir="rtl"] .hero .eyebrow,
-html[lang="ar"][dir="rtl"] .hero .lead {
+html[lang="ar"][dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Deterministic header and footer placement.
+   Use physical flex order instead of relying on inherited direction. */
+html[lang="ar"][dir="rtl"] .site-header__inner,
+html[lang="ar"][dir="rtl"] .footer__top {
+  direction: ltr !important;
+}
+
+html[lang="ar"][dir="rtl"] .brand,
+html[lang="ar"][dir="rtl"] .footer__brand {
+  order: 2;
+  margin-inline: 0 !important;
+}
+
+html[lang="ar"][dir="rtl"] .site-nav,
+html[lang="ar"][dir="rtl"] .menu-button,
+html[lang="ar"][dir="rtl"] .footer__nav {
+  order: 1;
+}
+
+html[lang="ar"][dir="rtl"] :where(.site-nav, .footer__nav) {
+  direction: rtl !important;
+  text-align: right;
+}
+
+html[lang="ar"][dir="rtl"] :where(.site-nav a, .footer__nav a) {
+  text-align: right;
+}
+
+html[lang="ar"][dir="rtl"] .footer__bottom {
+  direction: rtl;
+}
+
+html[lang="ar"][dir="rtl"] .footer__bottom p:first-child {
+  text-align: right;
+}
+
+html[lang="ar"][dir="rtl"] .footer__bottom p:nth-child(2) {
+  text-align: center;
+}
+
+html[lang="ar"][dir="rtl"] .footer__bottom p:last-child {
+  text-align: left;
+}
+
+/* Desktop Hero is a physical mirror: visual left, copy right. */
+html[lang="ar"][dir="rtl"] .hero__grid {
+  direction: ltr !important;
+}
+
+html[lang="ar"][dir="rtl"] .hero__copy {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 700px;
+  justify-self: end;
+  direction: rtl;
+  text-align: right;
+}
+
+html[lang="ar"][dir="rtl"] .hero-visual {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+}
+
+html[lang="ar"][dir="rtl"] :where(
+  .hero-title,
+  .hero-title__line,
+  .hero .eyebrow,
+  .hero .lead
+) {
   text-align: right;
 }
 
@@ -26,47 +99,285 @@ html[lang="ar"][dir="rtl"] .hero-title__line--3::after {
   transform-origin: right;
 }
 
+html[lang="ar"][dir="rtl"] :where(
+  .hero-actions,
+  .hero-proof,
+  .hero-visual__caption,
+  .story-principles,
+  .capability-grid,
+  .capability-card__top,
+  .capability-tags,
+  .system-flow,
+  .product-grid,
+  .product-card__meta,
+  .product-card__footer,
+  .contact-actions
+) {
+  direction: rtl;
+}
+
+html[lang="ar"][dir="rtl"] .hero-visual__caption {
+  text-align: right;
+}
+
 html[lang="ar"][dir="rtl"] .hero-proof span:not(:last-child)::after {
   right: auto;
   left: -0.85rem;
 }
 
-html[lang="ar"][dir="rtl"] .hero-visual__caption {
-  direction: rtl;
+/* Mirror directional actions and hover travel. */
+html[lang="ar"][dir="rtl"] :where(
+  .button-arrow,
+  .capability-card__arrow,
+  .product-card__footer a span[aria-hidden="true"]
+) {
+  transform: scaleX(-1);
+}
+
+html[lang="ar"][dir="rtl"] .button:hover .button-arrow,
+html[lang="ar"][dir="rtl"] .button:focus-visible .button-arrow {
+  transform: translate(-3px, -3px) scaleX(-1);
+}
+
+html[lang="ar"][dir="rtl"] .capability-card__arrow {
+  right: auto;
+  left: 2rem;
+  transform: translate(5px, 5px) scaleX(-1);
+}
+
+html[lang="ar"][dir="rtl"] .capability-card:hover .capability-card__arrow,
+html[lang="ar"][dir="rtl"] .capability-card:focus-visible .capability-card__arrow {
+  transform: translate(0, 0) scaleX(-1);
+}
+
+html[lang="ar"][dir="rtl"] .product-card__footer a span {
+  margin-left: 0;
+  margin-right: 0.3rem;
+}
+
+html[lang="ar"][dir="rtl"] .product-card__footer a:hover span,
+html[lang="ar"][dir="rtl"] .product-card__footer a:focus-visible span {
+  transform: translate(-3px, -3px) scaleX(-1);
+}
+
+html[lang="ar"][dir="rtl"] .story-principles > div:hover strong,
+html[lang="ar"][dir="rtl"] .capability-card:hover h3,
+html[lang="ar"][dir="rtl"] .capability-card:focus-visible h3,
+html[lang="ar"][dir="rtl"] .product-card:hover h3,
+html[lang="ar"][dir="rtl"] .product-card:focus-within h3 {
+  transform: translateX(-4px);
+}
+
+html[lang="ar"][dir="rtl"] .flow-step:hover .flow-step__number,
+html[lang="ar"][dir="rtl"] .flow-step:hover strong,
+html[lang="ar"][dir="rtl"] .flow-step:focus-within .flow-step__number,
+html[lang="ar"][dir="rtl"] .flow-step:focus-within strong {
+  transform: translateX(-3px);
+}
+
+/* The process reads from right to left on wide screens. */
+@media (min-width: 821px) {
+  html[lang="ar"][dir="rtl"] .flow-track__progress {
+    transform-origin: right center;
+  }
+
+  html[lang="ar"][dir="rtl"] .flow-track__beacon {
+    left: auto;
+    right: calc(var(--flow-progress) * 100%);
+    transform: translate(50%, -50%);
+  }
+}
+
+/* Mirror decorative geometry without changing the approved structure. */
+html[lang="ar"][dir="rtl"] .hero::before {
+  -webkit-mask-image: linear-gradient(to left, transparent 2%, #000 46%, #000 90%, transparent);
+  mask-image: linear-gradient(to left, transparent 2%, #000 46%, #000 90%, transparent);
+}
+
+html[lang="ar"][dir="rtl"] .hero::after {
+  right: auto;
+  left: -10%;
+}
+
+html[lang="ar"][dir="rtl"] .story::before {
+  right: auto;
+  left: -14%;
+}
+
+html[lang="ar"][dir="rtl"] .portfolio::before {
+  right: auto !important;
+  left: -0.04em !important;
+  direction: ltr;
+}
+
+html[lang="ar"][dir="rtl"] .contact-panel::after {
+  right: auto;
+  left: -70px;
+}
+
+html[lang="ar"][dir="rtl"] .contact-panel__grid {
+  -webkit-mask-image: radial-gradient(circle at 28% 45%, #000, transparent 70%);
+  mask-image: radial-gradient(circle at 28% 45%, #000, transparent 70%);
+}
+
+html[lang="ar"][dir="rtl"] .contact-panel__email {
+  right: auto;
+  left: clamp(2.2rem, 7vw, 6rem);
   text-align: right;
 }
 
-@media (max-width: 820px) {
-  html[lang="ar"][dir="rtl"] .hero__grid,
-  html[lang="ar"][dir="rtl"] .hero__copy,
-  html[lang="ar"][dir="rtl"] .hero-actions,
-  html[lang="ar"][dir="rtl"] .hero-actions .button,
-  html[lang="ar"][dir="rtl"] .hero-proof {
-    direction: rtl;
+html[lang="ar"][dir="rtl"] .scroll-cue {
+  left: auto;
+  right: max(1.5rem, calc((100vw - var(--max)) / 2));
+}
+
+/* Arabic entrance motion starts from the logical opposite side. */
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-motion="left"] {
+  transform: translate3d(30px, 0, 0);
+}
+
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-motion="right"] {
+  transform: translate3d(-30px, 0, 0);
+}
+
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion="left"] {
+  transform: translate3d(14px, 0, 0);
+}
+
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion="right"] {
+  transform: translate3d(-14px, 0, 0);
+}
+
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-motion].motion-visible,
+html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-micro-motion].micro-visible {
+  transform: none !important;
+}
+
+/* Keep the accepted Arabic desktop grouping for Process and Portfolio. */
+@media (min-width: 961px) {
+  html[lang="ar"][dir="rtl"] .systems__intro,
+  html[lang="ar"][dir="rtl"] .portfolio__heading {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.35rem !important;
+    width: min(calc(100% - 3rem), 1100px) !important;
+    margin-inline: auto !important;
+    align-items: start !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro > div,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > div,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
+    grid-column: 1 !important;
+    width: min(100%, 900px) !important;
+    max-width: 900px !important;
+    justify-self: center !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro > div:first-child,
+  html[lang="ar"][dir="rtl"] .portfolio__heading > div {
+    display: block !important;
+  }
+
+  html[lang="ar"][dir="rtl"] :where(
+    .systems__intro .eyebrow,
+    .portfolio__heading .eyebrow
+  ) {
+    margin-bottom: 0.75rem !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .systems__intro .section-index {
+    margin-top: 0 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .portfolio__heading > p {
+    align-self: auto !important;
+    line-height: 1.9 !important;
+  }
+}
+
+/* Compact Arabic Hero remains side by side instead of stacking the symbol below. */
+@media (max-width: 960px) and (min-width: 391px) {
+  html[lang="ar"][dir="rtl"] .site-header__inner {
+    width: 100% !important;
+    padding-inline: var(--responsive-gutter, 1.25rem) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .brand,
+  html[lang="ar"][dir="rtl"] .menu-button {
+    flex: 0 0 auto;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero__grid {
+    grid-template-columns: minmax(140px, 0.82fr) minmax(220px, 1.18fr) !important;
+    gap: clamp(0.75rem, 2.5vw, 1.5rem) !important;
+    align-items: center !important;
   }
 
   html[lang="ar"][dir="rtl"] .hero__copy {
-    width: 100%;
-    justify-self: stretch;
-    text-align: right;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    max-width: none !important;
+    justify-self: stretch !important;
   }
 
-  html[lang="ar"][dir="rtl"] .hero .eyebrow,
+  html[lang="ar"][dir="rtl"] .hero-visual {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: min(100%, 280px) !important;
+    min-height: clamp(230px, 38vw, 350px) !important;
+    margin-inline: 0 !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-mark {
+    width: min(100%, 255px) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-orbit--one {
+    width: min(46vw, 285px) !important;
+    height: min(46vw, 285px) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-orbit--two {
+    width: min(56vw, 345px) !important;
+    height: min(56vw, 345px) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title {
+    max-width: 8.6ch !important;
+    font-size: clamp(3.05rem, 8.8vw, 5.05rem) !important;
+    line-height: 1.08 !important;
+  }
+
   html[lang="ar"][dir="rtl"] .hero .lead {
-    margin-inline: 0 auto;
+    max-width: 34rem !important;
   }
 
-  html[lang="ar"][dir="rtl"] .hero-actions .button {
-    text-align: right;
+  html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-motion="left"] {
+    transform: translate3d(22px, 0, 0) !important;
   }
 
-  html[lang="ar"][dir="rtl"] .site-nav,
-  html[lang="ar"][dir="rtl"] .footer,
-  html[lang="ar"][dir="rtl"] .footer__top,
-  html[lang="ar"][dir="rtl"] .footer__bottom,
-  html[lang="ar"][dir="rtl"] .contact-panel,
-  html[lang="ar"][dir="rtl"] .contact-panel__email {
-    text-align: right;
+  html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) [data-motion="right"] {
+    transform: translate3d(-22px, 0, 0) !important;
+  }
+}
+
+@media (max-width: 820px) {
+  html[lang="ar"][dir="rtl"] .site-nav {
+    left: var(--responsive-gutter, 1rem) !important;
+    right: var(--responsive-gutter, 1rem) !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .site-nav a {
+    justify-content: flex-start;
+  }
+
+  html[lang="ar"][dir="rtl"] .capability-card__arrow {
+    left: 1.25rem;
   }
 
   html[lang="ar"][dir="rtl"] .footer__bottom p,
@@ -76,46 +387,111 @@ html[lang="ar"][dir="rtl"] .hero-visual__caption {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 700px) and (min-width: 391px) {
   html[lang="ar"][dir="rtl"] .hero {
-    --pointer-x: 28%;
+    padding-inline: 0 !important;
   }
 
-  html[lang="ar"][dir="rtl"] .hero::after {
-    right: auto;
-    left: -70%;
+  html[lang="ar"][dir="rtl"] .hero__grid {
+    grid-template-columns: minmax(125px, 0.78fr) minmax(205px, 1.22fr) !important;
+    gap: 0.65rem !important;
   }
 
   html[lang="ar"][dir="rtl"] .hero-visual {
-    right: auto;
-    left: -7.5rem;
+    width: min(100%, 205px) !important;
+    min-height: 230px !important;
   }
 
-  html[lang="ar"][dir="rtl"] :where(.capability-grid, .system-flow, .product-grid) {
-    direction: rtl;
+  html[lang="ar"][dir="rtl"] .hero-mark {
+    width: min(100%, 190px) !important;
   }
 
-  html[lang="ar"][dir="rtl"] .portfolio::before {
-    right: auto;
-    left: -0.04em;
+  html[lang="ar"][dir="rtl"] .hero-orbit--one {
+    width: 205px !important;
+    height: 205px !important;
   }
 
-  html[lang="ar"][dir="rtl"] .contact-panel::after {
-    right: auto;
-    left: -70px;
+  html[lang="ar"][dir="rtl"] .hero-orbit--two {
+    width: 245px !important;
+    height: 245px !important;
   }
 
-  html[lang="ar"][dir="rtl"] .product-card__footer,
-  html[lang="ar"][dir="rtl"] .contact-actions,
-  html[lang="ar"][dir="rtl"] .contact-actions .button,
-  html[lang="ar"][dir="rtl"] .footer__nav {
-    direction: rtl;
+  html[lang="ar"][dir="rtl"] .hero-title {
+    max-width: 8.4ch !important;
+    font-size: clamp(2.9rem, 13.5vw, 4.1rem) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero .lead {
+    font-size: 1rem !important;
+    line-height: 1.78 !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-actions {
+    align-items: flex-start !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-actions .button {
+    max-width: 100%;
+  }
+
+  html[lang="ar"][dir="rtl"] .contact-panel__email {
+    right: var(--responsive-gutter, 1rem);
+    left: var(--responsive-gutter, 1rem);
   }
 }
 
-@media (max-width: 420px) {
+/* Very narrow screens use a deliberate stacked fallback to prevent compression. */
+@media (max-width: 390px) {
+  html[lang="ar"][dir="rtl"] .site-header__inner {
+    padding-inline: 1rem !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.75rem !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero__copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
   html[lang="ar"][dir="rtl"] .hero-visual {
-    right: auto;
-    left: -9rem;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    width: min(100%, 260px) !important;
+    min-height: 245px !important;
+    margin-inline: auto !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-mark {
+    width: min(68vw, 220px) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-orbit--one {
+    width: 245px !important;
+    height: 245px !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-orbit--two {
+    width: 290px !important;
+    height: 290px !important;
+  }
+
+  html[lang="ar"][dir="rtl"] .hero-title {
+    max-width: 9ch !important;
+    font-size: clamp(2.85rem, 14.5vw, 3.65rem) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[lang="ar"][dir="rtl"] :where(
+    [data-motion],
+    [data-micro-motion],
+    .button-arrow,
+    .capability-card__arrow,
+    .product-card__footer a span[aria-hidden="true"]
+  ) {
+    transform: none !important;
   }
 }
