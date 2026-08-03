@@ -1,7 +1,8 @@
-/* DISC-37 v21 mobile Hero composition parity.
+/* DISC-37 v22 mobile Hero composition parity and full-node visibility.
    English and Arabic share one physical Hero visual system. Direction changes
    typography and reading flow only; the monolith, Fusion Core, rings, and nodes
-   remain centered in the same neutral composition.
+   remain centered in the same neutral composition. The outer node is inset from
+   its rotating paint boundary so the complete Amber disc and glow stay visible.
 */
 
 /* A third Accretion Node completes the three-mass identity on every viewport. */
@@ -18,7 +19,7 @@
   pointer-events: none;
   opacity: 0.82;
   background: radial-gradient(
-    circle at 50% 0,
+    circle at 50% 8px,
     rgba(224, 167, 47, 1) 0 3px,
     rgba(224, 167, 47, 0.42) 4px 7px,
     transparent 8px
@@ -223,7 +224,7 @@
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
-    width: clamp(350px, 104vw, 450px) !important;
+    width: min(100vw, 430px) !important;
     translate: -50% -50% !important;
     opacity: 0.28 !important;
     transform-origin: center !important;
@@ -234,10 +235,16 @@
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
-    width: clamp(350px, 104vw, 450px) !important;
+    width: min(100vw, 430px) !important;
     translate: -50% -50% !important;
     opacity: 0.84 !important;
     transform-origin: center !important;
+    background: radial-gradient(
+      circle at 50% 10px,
+      rgba(224, 167, 47, 1) 0 3px,
+      rgba(224, 167, 47, 0.42) 4px 7px,
+      transparent 8px
+    ) !important;
   }
 
   html[lang][dir] body .hero .hero__grid > .hero-visual .hero-visual__field {
