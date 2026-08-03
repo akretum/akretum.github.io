@@ -1,0 +1,283 @@
+/* DISC-37 v21 mobile Hero composition parity.
+   English and Arabic share one physical Hero visual system. Direction changes
+   typography and reading flow only; the monolith, Fusion Core, rings, and nodes
+   remain centered in the same neutral composition.
+*/
+
+/* A third Accretion Node completes the three-mass identity on every viewport. */
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: clamp(610px, 47vw, 750px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.82;
+  background: radial-gradient(
+    circle at 50% 0,
+    rgba(224, 167, 47, 1) 0 3px,
+    rgba(224, 167, 47, 0.42) 4px 7px,
+    transparent 8px
+  );
+  filter: drop-shadow(0 0 10px rgba(224, 167, 47, 0.55));
+  animation: orbit 54s linear infinite;
+  animation-play-state: running;
+}
+
+/* The center behaves like a living system core, not a literal medical heart. */
+.is-ready .hero-mark__core {
+  animation:
+    core-arrival 0.8s var(--ease) 1.55s forwards,
+    system-core-heartbeat 4.2s ease-in-out 2.4s infinite;
+}
+
+@keyframes system-core-heartbeat {
+  0%, 9%, 17%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow:
+      0 0 0 9px rgba(224, 167, 47, 0.07),
+      0 0 34px rgba(224, 167, 47, 0.58);
+  }
+  5% {
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow:
+      0 0 0 15px rgba(224, 167, 47, 0.035),
+      0 0 54px rgba(224, 167, 47, 0.84);
+  }
+  13% {
+    transform: translate(-50%, -50%) scale(1.09);
+    box-shadow:
+      0 0 0 12px rgba(224, 167, 47, 0.045),
+      0 0 44px rgba(224, 167, 47, 0.72);
+  }
+}
+
+@keyframes accretion-node-orbit-one {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--node-radius)); }
+  to { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--node-radius)); }
+}
+
+@keyframes accretion-node-orbit-two {
+  from { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--node-radius)); }
+  to { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--node-radius)); }
+}
+
+@media (max-width: 960px) {
+  .hero-visual::after {
+    width: clamp(470px, 112vw, 620px);
+  }
+}
+
+@media (max-width: 700px) {
+  html[lang][dir] body .hero .hero__grid::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 0.5rem !important;
+    align-items: start !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .is-ready .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:hover,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:focus-within {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    order: initial !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: clamp(340px, 96vw, 420px) !important;
+    aspect-ratio: auto !important;
+    display: grid !important;
+    place-items: center !important;
+    justify-self: stretch !important;
+    align-self: start !important;
+    margin: 0 auto 0.5rem !important;
+    translate: none !important;
+    transform: none !important;
+    contain: layout style !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero__copy {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    order: initial !important;
+    width: 100% !important;
+    justify-self: stretch !important;
+    z-index: 3 !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-mark {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: clamp(220px, 66vw, 300px) !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    translate: -50% -50% !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 3 !important;
+    filter: brightness(1.06) drop-shadow(0 26px 58px rgba(0, 0, 0, 0.38)) !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__piece {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__complete {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__core {
+    display: block !important;
+    top: 50% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    animation: system-core-heartbeat 4.2s ease-in-out 0.8s infinite !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit,
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one,
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    translate: -50% -50% !important;
+    transform: none !important;
+    transform-origin: center !important;
+    visibility: visible !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one {
+    width: clamp(260px, 78vw, 340px) !important;
+    height: clamp(260px, 78vw, 340px) !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two {
+    width: clamp(310px, 92vw, 400px) !important;
+    height: clamp(310px, 92vw, 400px) !important;
+    opacity: 0.68 !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one::after,
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two::after {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one::after {
+    --node-radius: clamp(127px, 39vw, 167px);
+    animation: accretion-node-orbit-one 28s linear infinite !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two::after {
+    --node-radius: clamp(152px, 46vw, 197px);
+    animation: accretion-node-orbit-two 42s linear infinite !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual::before {
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: clamp(350px, 104vw, 450px) !important;
+    translate: -50% -50% !important;
+    opacity: 0.28 !important;
+    transform-origin: center !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual::after {
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: clamp(350px, 104vw, 450px) !important;
+    translate: -50% -50% !important;
+    opacity: 0.84 !important;
+    transform-origin: center !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-visual__field {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: min(92vw, 420px) !important;
+    height: min(92vw, 420px) !important;
+    aspect-ratio: 1 !important;
+    translate: -50% -50% !important;
+    border-radius: 50% !important;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(13, 77, 79, 0.3),
+      rgba(13, 77, 79, 0.08) 48%,
+      transparent 72%
+    ) !important;
+  }
+
+  html[lang][dir] body .hero .hero-visual__caption {
+    display: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  html[lang][dir] body .hero .hero__grid > .hero-visual {
+    min-height: clamp(340px, 102vw, 390px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual::after,
+  html[lang][dir] body .hero .hero-mark__core,
+  html[lang][dir] body .hero .hero-orbit::after {
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__core {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+  }
+}
