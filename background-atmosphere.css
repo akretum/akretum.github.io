@@ -1,0 +1,498 @@
+/* DISC-37 v19 Accretion Atmosphere.
+   A CSS-only background companion for the single motion-system.js controller.
+   Every section derives its atmosphere from AKRETUM's accretion story and the
+   Offset Fusion principle: independent elements align, accumulate, and settle
+   into one stronger system. No content, geometry, navigation, or logo asset is
+   changed by this layer.
+*/
+
+:root {
+  --atmosphere-teal: 13, 91, 93;
+  --atmosphere-teal-light: 61, 137, 138;
+  --atmosphere-jade: 31, 122, 92;
+  --atmosphere-amber: 224, 167, 47;
+  --atmosphere-ink: 15, 17, 19;
+  --atmosphere-mirror: 1;
+}
+
+html[dir="rtl"] {
+  --atmosphere-mirror: -1;
+}
+
+:where(.story, .capabilities, .systems, .portfolio, .contact, .footer) {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+:where(.story, .capabilities, .systems, .portfolio, .contact, .footer) > .shell,
+.portfolio__heading,
+.product-grid,
+.contact-panel,
+.footer__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* HEADER: independent traces align into one precise material edge. */
+.site-header {
+  isolation: isolate;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background:
+    radial-gradient(ellipse at 18% 100%, rgba(var(--atmosphere-teal-light), 0.11), transparent 36%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 46px,
+      rgba(255, 255, 255, 0.045) 47px,
+      transparent 48px 94px
+    );
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  transition: opacity 360ms ease;
+}
+
+.site-header.scrolled::before {
+  opacity: 0.38;
+}
+
+.site-header__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* HERO: three distant masses converge around the approved Accretion Assembly. */
+.hero {
+  background:
+    radial-gradient(circle at var(--hero-aurora-x) var(--hero-aurora-y), rgba(var(--atmosphere-teal-light), 0.2), transparent 29%),
+    radial-gradient(ellipse at 78% 28%, rgba(var(--atmosphere-teal), 0.105), transparent 30%),
+    radial-gradient(ellipse at 90% 50%, rgba(var(--atmosphere-jade), 0.075), transparent 31%),
+    radial-gradient(ellipse at 70% 72%, rgba(var(--atmosphere-teal-light), 0.065), transparent 29%),
+    radial-gradient(circle at 76% 50%, rgba(var(--atmosphere-amber), 0.07), transparent 12%),
+    repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.022) 80px),
+    repeating-linear-gradient(0deg, transparent 0 79px, rgba(255, 255, 255, 0.017) 80px),
+    var(--charcoal) !important;
+}
+
+/* COMPANY: dispersed elements gather into three low-contrast fusion zones. */
+.story::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -18% -10% -16% 42%;
+  pointer-events: none;
+  opacity: 0.78;
+  background:
+    radial-gradient(ellipse at 26% 34%, rgba(var(--atmosphere-teal), 0.075), transparent 34%),
+    radial-gradient(ellipse at 66% 46%, rgba(var(--atmosphere-teal-light), 0.06), transparent 32%),
+    radial-gradient(ellipse at 48% 72%, rgba(var(--atmosphere-jade), 0.048), transparent 31%),
+    radial-gradient(circle at 50% 51%, rgba(var(--atmosphere-amber), 0.07), transparent 7%),
+    conic-gradient(
+      from 214deg at 50% 51%,
+      transparent 0 16%,
+      rgba(var(--atmosphere-teal), 0.035) 17% 25%,
+      transparent 27% 55%,
+      rgba(var(--atmosphere-amber), 0.025) 56% 62%,
+      transparent 64%
+    );
+  transform:
+    translate3d(calc(18px - var(--story-progress, 0) * 18px), 0, 0)
+    scaleX(var(--atmosphere-mirror))
+    scale(calc(0.96 + var(--story-progress, 0) * 0.04));
+  transform-origin: center;
+  transition: opacity 520ms ease;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0 54%, transparent 82%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0 54%, transparent 82%);
+}
+
+.story::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background:
+    repeating-radial-gradient(circle at 78% 46%, rgba(var(--atmosphere-teal), 0.08) 0 1px, transparent 1.4px 18px),
+    repeating-linear-gradient(118deg, transparent 0 54px, rgba(var(--atmosphere-ink), 0.028) 55px, transparent 56px 112px),
+    repeating-radial-gradient(circle at 20% 30%, rgba(var(--atmosphere-ink), 0.12) 0 0.45px, transparent 0.7px 4px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 92%, transparent);
+}
+
+/* CAPABILITIES: three specialized layers overlap to create usable capability. */
+.capabilities::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -18% -8%;
+  pointer-events: none;
+  opacity: 0.76;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(255, 255, 255, 0.055), transparent 31%),
+    radial-gradient(ellipse at 58% 38%, rgba(var(--atmosphere-teal-light), 0.13), transparent 34%),
+    radial-gradient(ellipse at 84% 70%, rgba(var(--atmosphere-jade), 0.1), transparent 33%),
+    radial-gradient(circle at 59% 49%, rgba(var(--atmosphere-amber), 0.06), transparent 9%),
+    conic-gradient(
+      from 232deg at 57% 49%,
+      transparent 0 18%,
+      rgba(255, 255, 255, 0.025) 19% 31%,
+      transparent 32% 62%,
+      rgba(var(--atmosphere-amber), 0.022) 63% 69%,
+      transparent 71%
+    );
+  transform: translate3d(0, 14px, 0) scaleX(var(--atmosphere-mirror)) scale(0.985);
+  transition: transform 900ms var(--motion-ease), opacity 620ms ease;
+  -webkit-mask-image: radial-gradient(ellipse at 54% 48%, #000 0 58%, transparent 88%);
+  mask-image: radial-gradient(ellipse at 54% 48%, #000 0 58%, transparent 88%);
+}
+
+.capabilities.motion-in-range::before {
+  transform: translate3d(0, 0, 0) scaleX(var(--atmosphere-mirror)) scale(1);
+}
+
+.capabilities::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 71px, rgba(255, 255, 255, 0.04) 72px, transparent 73px 144px),
+    repeating-linear-gradient(0deg, transparent 0 71px, rgba(255, 255, 255, 0.028) 72px, transparent 73px 144px),
+    repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12) 0 0.5px, transparent 0.8px 5px);
+  -webkit-mask-image:
+    linear-gradient(90deg, #000, transparent 34%),
+    linear-gradient(270deg, #000, transparent 32%);
+  mask-image:
+    linear-gradient(90deg, #000, transparent 34%),
+    linear-gradient(270deg, #000, transparent 32%);
+  mask-composite: add;
+}
+
+/* PROCESS: signal routes accumulate value from Ideas to complete Systems. */
+.systems::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.68;
+  background:
+    linear-gradient(90deg, transparent 4%, rgba(var(--atmosphere-teal-light), 0.08) 42%, rgba(var(--atmosphere-amber), 0.055) 64%, transparent 96%),
+    repeating-linear-gradient(90deg, transparent 0 77px, rgba(255, 255, 255, 0.034) 78px, transparent 79px 156px),
+    repeating-linear-gradient(116deg, transparent 0 68px, rgba(var(--atmosphere-teal-light), 0.028) 69px, transparent 70px 138px),
+    radial-gradient(circle at 12% 58%, rgba(var(--atmosphere-teal-light), 0.08), transparent 8%),
+    radial-gradient(circle at 38% 50%, rgba(var(--atmosphere-teal-light), 0.075), transparent 7%),
+    radial-gradient(circle at 64% 55%, rgba(var(--atmosphere-jade), 0.075), transparent 7%),
+    radial-gradient(circle at 88% 46%, rgba(var(--atmosphere-amber), 0.065), transparent 7%);
+  transform: scaleX(var(--atmosphere-mirror));
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 82%, transparent);
+}
+
+.systems::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 56%;
+  left: calc(var(--flow-progress, 0) * 100%);
+  width: clamp(13rem, 22vw, 24rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0.26;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(var(--atmosphere-amber), 0.12), rgba(var(--atmosphere-teal-light), 0.07) 24%, transparent 66%);
+  transform: translate(-50%, -50%);
+  transition: left 120ms linear;
+  filter: blur(1px);
+}
+
+/* PORTFOLIO: AKRETUM remains the visible parent system behind its products. */
+.portfolio {
+  --portfolio-atmosphere-opacity: 0.056;
+}
+
+.portfolio::before {
+  content: "AKRETUM" !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  top: clamp(4.75rem, 9vw, 8.5rem) !important;
+  left: 50% !important;
+  right: auto !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
+  color: rgba(var(--atmosphere-teal), var(--portfolio-atmosphere-opacity)) !important;
+  opacity: 1 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: clamp(10rem, 22vw, 30rem) !important;
+  font-weight: 800 !important;
+  line-height: 0.78 !important;
+  letter-spacing: -0.085em !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transform: translate3d(calc(-50% + var(--portfolio-shift, 0px)), 0, 0) !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.portfolio::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -12% -6%;
+  pointer-events: none;
+  opacity: 0.7;
+  background:
+    radial-gradient(ellipse at 21% 40%, rgba(var(--atmosphere-teal), 0.058), transparent 30%),
+    radial-gradient(ellipse at 55% 54%, rgba(var(--atmosphere-teal-light), 0.045), transparent 31%),
+    radial-gradient(ellipse at 86% 67%, rgba(var(--atmosphere-jade), 0.042), transparent 29%),
+    radial-gradient(circle at 51% 50%, rgba(var(--atmosphere-amber), 0.05), transparent 6%),
+    repeating-linear-gradient(102deg, transparent 0 88px, rgba(var(--atmosphere-teal), 0.024) 89px, transparent 90px 180px);
+  transform: scaleX(var(--atmosphere-mirror));
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0 62%, transparent 90%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0 62%, transparent 90%);
+}
+
+.portfolio__heading,
+.product-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* CONTACT: three fields converge into one active project core. */
+.contact::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -12% -8%;
+  pointer-events: none;
+  opacity: 0.5;
+  background:
+    radial-gradient(ellipse at 18% 74%, rgba(var(--atmosphere-teal), 0.06), transparent 28%),
+    radial-gradient(ellipse at 54% 38%, rgba(var(--atmosphere-teal-light), 0.05), transparent 29%),
+    radial-gradient(ellipse at 88% 64%, rgba(var(--atmosphere-jade), 0.045), transparent 28%),
+    repeating-linear-gradient(90deg, transparent 0 83px, rgba(var(--atmosphere-ink), 0.024) 84px, transparent 85px 168px);
+  transform: scaleX(var(--atmosphere-mirror));
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 84%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 84%, transparent);
+}
+
+.contact-panel {
+  background:
+    radial-gradient(circle at var(--contact-x) var(--contact-y), rgba(var(--atmosphere-teal), 0.4), transparent 29%),
+    radial-gradient(ellipse at 24% 72%, rgba(var(--atmosphere-teal-light), 0.18), transparent 35%),
+    radial-gradient(ellipse at 62% 26%, rgba(var(--atmosphere-teal), 0.14), transparent 34%),
+    radial-gradient(ellipse at 88% 66%, rgba(var(--atmosphere-jade), 0.11), transparent 31%),
+    radial-gradient(circle at 75% 43%, rgba(var(--atmosphere-amber), 0.095), transparent 12%),
+    repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.024) 80px),
+    var(--charcoal) !important;
+}
+
+.contact-panel::before {
+  background:
+    radial-gradient(ellipse at 24% 66%, rgba(var(--atmosphere-teal), 0.3), transparent 42%),
+    radial-gradient(ellipse at 60% 32%, rgba(var(--atmosphere-teal-light), 0.26), transparent 39%),
+    radial-gradient(ellipse at 82% 72%, rgba(var(--atmosphere-jade), 0.22), transparent 36%),
+    radial-gradient(circle at 67% 47%, rgba(var(--atmosphere-amber), 0.075), transparent 15%) !important;
+  -webkit-mask-image: radial-gradient(ellipse at 58% 50%, #000 0 58%, transparent 88%);
+  mask-image: radial-gradient(ellipse at 58% 50%, #000 0 58%, transparent 88%);
+}
+
+/* FOOTER: all motion settles into one calm, fused line and quiet material. */
+.footer::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--atmosphere-teal-light), 0.34) 25%,
+      rgba(var(--atmosphere-amber), 0.5) 50%,
+      rgba(var(--atmosphere-teal-light), 0.28) 75%,
+      transparent
+    ) !important;
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(var(--atmosphere-teal), 0.08), transparent 42%),
+    radial-gradient(ellipse at 14% 100%, rgba(var(--atmosphere-amber), 0.025), transparent 24%),
+    repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.11) 0 0.45px, transparent 0.7px 4px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.2));
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000, transparent 92%);
+}
+
+.footer__inner,
+.footer > .shell {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 960px) {
+  .hero {
+    background:
+      radial-gradient(circle at var(--hero-aurora-x) var(--hero-aurora-y), rgba(var(--atmosphere-teal-light), 0.17), transparent 30%),
+      radial-gradient(ellipse at 96% 44%, rgba(var(--atmosphere-teal), 0.09), transparent 34%),
+      radial-gradient(ellipse at 84% 68%, rgba(var(--atmosphere-jade), 0.06), transparent 32%),
+      radial-gradient(circle at 92% 54%, rgba(var(--atmosphere-amber), 0.055), transparent 12%),
+      repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.018) 80px),
+      var(--charcoal) !important;
+  }
+
+  .story::before {
+    inset: -10% -34% -6% 34%;
+    opacity: 0.55;
+  }
+
+  .story::after,
+  .capabilities::after,
+  .systems::before,
+  .contact::before {
+    opacity: 0.24;
+  }
+
+  .capabilities::before {
+    inset: -10% -34%;
+    opacity: 0.58;
+  }
+
+  .portfolio {
+    --portfolio-atmosphere-opacity: 0.05;
+  }
+
+  .portfolio::before {
+    top: clamp(6rem, 18vw, 9rem) !important;
+    font-size: clamp(7rem, 29vw, 12rem) !important;
+    transform: translate3d(-50%, 0, 0) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+
+  .portfolio::after {
+    inset: -4% -32%;
+    opacity: 0.5;
+  }
+
+  .contact-panel::before {
+    opacity: 0.66;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header::before {
+    opacity: 0.18;
+  }
+
+  .story::before {
+    inset: 20% -54% 8% 28%;
+    opacity: 0.42;
+  }
+
+  .story::after {
+    opacity: 0.18;
+  }
+
+  .capabilities::before {
+    inset: -2% -72%;
+    opacity: 0.48;
+  }
+
+  .capabilities::after {
+    opacity: 0.18;
+  }
+
+  .systems::after {
+    top: calc(var(--flow-progress, 0) * 100%);
+    left: 50%;
+    width: 16rem;
+    transition: top 120ms linear;
+  }
+
+  .portfolio {
+    --portfolio-atmosphere-opacity: 0.052;
+  }
+
+  .portfolio::before {
+    top: 7rem !important;
+    font-size: clamp(6.4rem, 31vw, 9rem) !important;
+    letter-spacing: -0.09em !important;
+  }
+
+  .contact::before {
+    opacity: 0.18;
+  }
+
+  .footer::after {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header::before,
+  .story::before,
+  .capabilities::before,
+  .systems::after,
+  .portfolio::before,
+  .portfolio::after,
+  .contact::before,
+  .contact-panel::before,
+  .footer::before,
+  .footer::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .story::before,
+  .capabilities::before,
+  .systems::before,
+  .portfolio::after,
+  .contact::before {
+    transform: none !important;
+  }
+
+  .portfolio::before {
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+}
+
+@supports not (mask-image: linear-gradient(#000, transparent)) {
+  .site-header::before,
+  .story::before,
+  .story::after,
+  .capabilities::before,
+  .capabilities::after,
+  .systems::before,
+  .portfolio::before,
+  .portfolio::after,
+  .contact::before,
+  .contact-panel::before,
+  .footer::after {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.22;
+  }
+
+  .portfolio::before {
+    opacity: 1 !important;
+  }
+}
