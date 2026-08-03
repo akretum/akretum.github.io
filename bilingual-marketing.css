@@ -1,5 +1,6 @@
-/* DISC-37 shared bilingual controls and motion coverage.
-   Locale-specific direction is intentionally excluded from this file.
+/* DISC-37 v18 shared bilingual control styling.
+   Section motion is owned exclusively by motion-system.css and motion-system.js.
+   Locale-specific direction remains in arabic-mobile-rtl.css.
 */
 
 .language-switch {
@@ -14,206 +15,23 @@
   font-weight: 720;
   letter-spacing: 0.02em;
   transition:
-    transform 240ms var(--motion-ease),
-    color 240ms ease,
-    background 240ms ease,
-    border-color 240ms ease,
-    box-shadow 240ms ease;
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    translate 260ms var(--motion-ease);
 }
 
 .language-switch:hover,
 .language-switch:focus-visible {
-  transform: translateY(-2px) rotate(-1deg);
+  translate: 0 -1px;
   color: #0f1113;
   background: #d9be7c;
   border-color: #d9be7c;
-  box-shadow: 0 10px 24px rgba(217, 190, 124, 0.22);
 }
 
 .footer__nav .language-switch {
   min-height: 32px;
   padding-block: 0.34rem;
-}
-
-html:not(.no-js) [data-micro-motion] {
-  opacity: 0;
-  transform: translate3d(0, 12px, 0);
-  filter: blur(3px);
-  transition:
-    opacity 620ms var(--motion-ease),
-    transform 620ms var(--motion-ease),
-    filter 620ms var(--motion-ease);
-  transition-delay: var(--micro-delay, 0ms);
-}
-
-html:not(.no-js) [data-micro-motion="left"] {
-  transform: translate3d(-14px, 0, 0);
-}
-
-html:not(.no-js) [data-micro-motion="right"] {
-  transform: translate3d(14px, 0, 0);
-}
-
-html:not(.no-js) [data-micro-motion="scale"] {
-  transform: scale(0.965);
-}
-
-html:not(.no-js) [data-micro-motion].micro-visible {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
-.eyebrow,
-.section-index,
-.hero-proof span,
-.hero-visual__caption span,
-.contact-panel__email,
-.footer__bottom p {
-  transition:
-    color 240ms ease,
-    opacity 240ms ease,
-    letter-spacing 320ms var(--motion-ease),
-    transform 320ms var(--motion-ease);
-}
-
-section:hover > .shell .eyebrow,
-.contact-panel:hover .eyebrow {
-  letter-spacing: 0.16em;
-}
-
-.hero-proof span:hover,
-.hero-visual__caption span:hover,
-.footer__bottom p:hover {
-  color: #d9be7c;
-  transform: translateY(-2px);
-}
-
-.story-principles > div {
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform 360ms var(--motion-ease),
-    background 280ms ease,
-    border-color 280ms ease,
-    box-shadow 360ms ease;
-}
-
-.story-principles > div::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 2px;
-  background: linear-gradient(90deg, #0d5b5d, #d9be7c);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 420ms var(--motion-ease);
-}
-
-.story-principles > div:hover {
-  transform: translateY(-4px);
-  background: rgba(13, 91, 93, 0.035);
-  border-color: rgba(13, 91, 93, 0.2);
-  box-shadow: 0 14px 34px rgba(15, 17, 19, 0.07);
-}
-
-.story-principles > div:hover::after {
-  transform: scaleX(1);
-}
-
-.story-principles > div > span,
-.story-principles strong,
-.story-principles small {
-  transition: transform 300ms var(--motion-ease), color 240ms ease;
-}
-
-.story-principles > div:hover > span {
-  color: #d9be7c;
-  transform: translateY(-2px) scale(1.08);
-}
-
-.story-principles > div:hover strong {
-  color: #0d5b5d;
-  transform: translateX(3px);
-}
-
-.capability-card__number,
-.capability-card__type,
-.capability-card h3,
-.capability-card p,
-.capability-card__arrow {
-  transition:
-    transform 340ms var(--motion-ease),
-    color 260ms ease,
-    opacity 260ms ease;
-}
-
-.capability-card:hover .capability-card__number,
-.capability-card:focus-visible .capability-card__number {
-  transform: scale(1.14) rotate(-3deg);
-  color: #d9be7c;
-}
-
-.capability-card:hover h3,
-.capability-card:focus-visible h3 {
-  transform: translateX(5px);
-}
-
-.capability-card:hover .capability-card__arrow,
-.capability-card:focus-visible .capability-card__arrow {
-  transform: translate3d(5px, -5px, 0) rotate(8deg);
-}
-
-.flow-step p,
-.flow-step__number {
-  transition: transform 300ms var(--motion-ease), opacity 260ms ease, color 260ms ease;
-}
-
-.flow-step:hover p,
-.flow-step:focus-within p {
-  transform: translateY(-2px);
-  opacity: 1;
-}
-
-.product-card h3,
-.product-card > p,
-.product-card__footer > span,
-.product-card__meta > span {
-  transition:
-    transform 320ms var(--motion-ease),
-    color 260ms ease,
-    opacity 260ms ease;
-}
-
-.product-card:hover h3,
-.product-card:focus-within h3 {
-  transform: translateX(4px);
-  color: #0d5b5d;
-}
-
-.product-card:hover > p,
-.product-card:focus-within > p {
-  transform: translateY(-2px);
-}
-
-.product-card:hover .product-card__footer > span,
-.product-card:focus-within .product-card__footer > span {
-  color: #0d5b5d;
-  transform: translateY(-1px);
-}
-
-.contact-panel__grid {
-  transition: opacity 500ms ease, transform 900ms var(--motion-ease);
-}
-
-.contact-panel:hover .contact-panel__grid {
-  opacity: 0.82;
-  transform: scale(1.035) rotate(0.6deg);
-}
-
-.contact-panel:hover .contact-panel__email {
-  color: #d9be7c;
-  transform: translateY(-2px);
 }
 
 @media (max-width: 760px) {
@@ -224,25 +42,8 @@ section:hover > .shell .eyebrow,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html:not(.no-js) [data-micro-motion] {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
+  .language-switch {
     transition: none !important;
-  }
-
-  .language-switch,
-  .story-principles > div,
-  .story-principles > div::after,
-  .capability-card__number,
-  .capability-card h3,
-  .capability-card__arrow,
-  .flow-step p,
-  .product-card h3,
-  .product-card > p,
-  .contact-panel__grid {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
+    translate: none !important;
   }
 }

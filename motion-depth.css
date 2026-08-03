@@ -1,0 +1,141 @@
+/* DISC-37 v18 interaction depth companion.
+   This file belongs to the single motion-system.js controller. It loads after
+   the unified entrance contract only to resolve legacy transform ownership on
+   interactive cards and Process stages. It contains no independent runtime.
+*/
+
+/* Decorative depth and pseudo-elements must never widen the document canvas. */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Expensive decorative painting is isolated to its own section surface. */
+.hero,
+.systems,
+.portfolio,
+.contact-panel {
+  contain: paint;
+}
+
+/* Keep the compact Header material premium without forcing an 18px backdrop
+   re-raster on every scroll frame. */
+.site-header.scrolled {
+  background: rgba(15, 17, 19, 0.95) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(118%) !important;
+  backdrop-filter: blur(12px) saturate(118%) !important;
+}
+
+/* The Contact aurora remains the second strongest visual moment, but uses a
+   smaller raster surface and restrained blur for stable scrolling. */
+.contact-panel::before {
+  inset: -8% !important;
+  filter: blur(12px) !important;
+}
+
+/* The visible state has final authority over the initial entrance state. */
+html:not(.no-js):not(.motion-fallback) main section:not(.hero) :where(
+  [data-reveal].is-visible,
+  [data-reveal].motion-visible,
+  [data-motion].motion-visible
+),
+html:not(.no-js):not(.motion-fallback) .footer :where(
+  [data-reveal].is-visible,
+  [data-reveal].motion-visible,
+  [data-motion].motion-visible
+) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  translate: 0 0 !important;
+  scale: 1 !important;
+}
+
+/* Large cards and stages keep meaningful opacity, scale, and translation
+   entrances without applying a full-surface blur during rapid scrolling. */
+html:not(.no-js):not(.motion-fallback) :where(
+  .capability-card,
+  .product-card,
+  .flow-step
+) {
+  filter: none !important;
+}
+
+/* A motion subtree has one entrance owner. Nested elements inherit the motion
+   of their nearest animated parent instead of waiting on a second observer. */
+html:not(.no-js):not(.motion-fallback) :where([data-reveal], [data-motion]) [data-motion] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  translate: 0 0 !important;
+  scale: 1 !important;
+  transition: none !important;
+  transition-delay: 0ms !important;
+}
+
+/* Cards remain flat at rest. Perspective is activated only during an actual
+   fine-pointer or keyboard interaction, reducing persistent compositing work. */
+html:not(.no-js):not(.motion-fallback) .capability-card {
+  transform: translate3d(0, var(--card-lift, 0px), 0) !important;
+}
+
+html:not(.no-js):not(.motion-fallback) .product-card {
+  transform: translate3d(0, var(--product-lift, 0px), 0) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html:not(.no-js):not(.motion-fallback) .capability-card:is(:hover, :focus-visible, .motion-interacting),
+  html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) body .capability-card:is(:hover, :focus-visible, .motion-interacting) {
+    transform:
+      perspective(980px)
+      translate3d(0, var(--card-lift, 0px), 0)
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg)) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) .product-card:is(:hover, :focus-within, .motion-interacting),
+  html[lang="ar"][dir="rtl"]:not(.no-js):not(.motion-fallback) body .product-card:is(:hover, :focus-within, .motion-interacting) {
+    transform:
+      perspective(1100px)
+      translate3d(0, var(--product-lift, 0px), 0)
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg)) !important;
+  }
+}
+
+html:not(.no-js):not(.motion-fallback) .flow-step {
+  transform: translate3d(0, var(--flow-lift, 0px), 0) !important;
+}
+
+@media (max-width: 760px) {
+  html:not(.no-js):not(.motion-fallback) .capability-card {
+    transform: translate3d(0, var(--card-lift, 0px), 0) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) .product-card {
+    transform: translate3d(0, var(--product-lift, 0px), 0) !important;
+  }
+
+  .contact-panel::before {
+    inset: -5% !important;
+    filter: blur(10px) !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  html:not(.no-js):not(.motion-fallback) .capability-card {
+    transform: translate3d(0, var(--card-lift, 0px), 0) !important;
+  }
+
+  html:not(.no-js):not(.motion-fallback) .product-card {
+    transform: translate3d(0, var(--product-lift, 0px), 0) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability-card,
+  .product-card,
+  .flow-step {
+    transform: none !important;
+  }
+}

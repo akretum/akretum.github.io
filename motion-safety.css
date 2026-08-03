@@ -1,7 +1,7 @@
-/* DISC-37 fail-open motion safety.
-   Normal JavaScript-enhanced sessions keep the approved entrance animations.
-   Content is forced visible only when JavaScript is unavailable or an explicit
-   runtime fallback is activated.
+/* DISC-37 v18 fail-open motion safety.
+   Normal JavaScript-enhanced sessions keep the premium motion system.
+   Content is forced visible when JavaScript is unavailable, reduced motion is
+   requested, or the shared motion controller activates its fallback state.
 */
 
 html,
@@ -28,7 +28,10 @@ html.no-js :where(
   .hero-mark__complete,
   .hero-mark__core,
   .reveal,
-  .motion-item
+  .motion-item,
+  .footer__brand,
+  .footer__nav,
+  .footer__bottom > *
 ):not(.language-switch),
 html.motion-fallback :where(
   [data-reveal],
@@ -40,12 +43,17 @@ html.motion-fallback :where(
   .hero-mark__complete,
   .hero-mark__core,
   .reveal,
-  .motion-item
+  .motion-item,
+  .footer__brand,
+  .footer__nav,
+  .footer__bottom > *
 ):not(.language-switch) {
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
   transform: none !important;
+  translate: none !important;
+  scale: 1 !important;
   clip-path: none !important;
   animation: none !important;
   transition: none !important;
@@ -78,12 +86,20 @@ html.motion-fallback :where(
   visibility: visible;
 }
 
+html.no-js .footer::before,
+html.motion-fallback .footer::before {
+  transform: scaleX(1) !important;
+  animation: none !important;
+  transition: none !important;
+}
+
 .footer__bottom p:last-child,
 .footer__bottom [data-year] {
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
   transform: none !important;
+  translate: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
