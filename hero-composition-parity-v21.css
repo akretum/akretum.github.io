@@ -276,6 +276,330 @@
   }
 }
 
+/* AKR-40 v23 phone Hero side composition.
+   The controlled ProductionMaster geometry stays unchanged. On phones the Hero
+   copy and visual share one viewport-height stage, while exactly half of the
+   mark is clipped at the physical viewport edge. Arabic mirrors placement only.
+*/
+@media (max-width: 700px) {
+  html[lang][dir] body .hero {
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    overflow: clip !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid,
+  html[lang][dir] body .hero .hero__grid.shell {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: calc(100svh - var(--header-height) - 2.15rem) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero__copy {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    justify-self: start !important;
+    width: min(65vw, 320px) !important;
+    max-width: 320px !important;
+    min-width: 0 !important;
+    margin: 0 auto 0 var(--responsive-gutter) !important;
+    z-index: 3 !important;
+  }
+
+  html[lang][dir] body .hero .hero-title {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 1rem !important;
+    font-size: clamp(2.7rem, 13.5vw, 3.5rem) !important;
+    line-height: 0.91 !important;
+    letter-spacing: -0.065em !important;
+    text-wrap: initial !important;
+  }
+
+  html[lang][dir] body .hero .hero-title__line {
+    width: fit-content !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+  }
+
+  html[lang][dir] body .hero .eyebrow {
+    max-width: 26ch !important;
+    margin-bottom: 1.15rem !important;
+    font-size: 0.7rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.13em !important;
+  }
+
+  html[lang][dir] body .hero .lead {
+    max-width: 27ch !important;
+    margin-bottom: 0 !important;
+    font-size: clamp(0.84rem, 3.6vw, 0.94rem) !important;
+    line-height: 1.55 !important;
+  }
+
+  html[lang][dir] body .hero .hero-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin-top: 1.15rem !important;
+  }
+
+  html[lang][dir] body .hero .hero-actions .button {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 40px !important;
+    padding: 0.65rem 0.78rem !important;
+    gap: 0.65rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  html[lang][dir] body .hero .hero-proof {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 0.28rem !important;
+    margin-top: 0.9rem !important;
+    font-size: 0.64rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  html[lang][dir] body .hero .hero-proof span::after {
+    display: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .is-ready .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:hover,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:focus-within {
+    --hero-mobile-mark-size: clamp(420px, 112vw, 540px);
+    --hero-mobile-half-size: clamp(210px, 56vw, 270px);
+    --hero-mobile-orbit-one-size: clamp(470px, 128vw, 620px);
+    --hero-mobile-orbit-one-half: clamp(235px, 64vw, 310px);
+    --hero-mobile-orbit-two-size: clamp(540px, 148vw, 720px);
+    --hero-mobile-orbit-two-half: clamp(270px, 74vw, 360px);
+    --hero-mobile-atmosphere-size: clamp(500px, 136vw, 660px);
+    --hero-mobile-atmosphere-half: clamp(250px, 68vw, 330px);
+    position: absolute !important;
+    inset: 0 !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    translate: none !important;
+    transform: none !important;
+    contain: layout style paint !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-mark {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    right: calc(-1 * var(--hero-mobile-half-size)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: var(--hero-mobile-mark-size) !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    translate: 0 -50% !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 3 !important;
+    filter: drop-shadow(0 38px 85px rgba(0, 0, 0, 0.42)) !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__piece {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__complete {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__core {
+    display: block !important;
+    top: 51.2% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    animation: system-core-heartbeat 4.2s ease-in-out 0.8s infinite !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit,
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one,
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two {
+    position: absolute !important;
+    inset: auto !important;
+    top: 50% !important;
+    bottom: auto !important;
+    left: auto !important;
+    translate: 0 -50% !important;
+    transform-origin: center !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--one {
+    right: calc(-1 * var(--hero-mobile-orbit-one-half)) !important;
+    width: var(--hero-mobile-orbit-one-size) !important;
+    height: var(--hero-mobile-orbit-one-size) !important;
+    opacity: 1 !important;
+    animation: orbit 28s linear infinite !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-orbit--two {
+    right: calc(-1 * var(--hero-mobile-orbit-two-half)) !important;
+    width: var(--hero-mobile-orbit-two-size) !important;
+    height: var(--hero-mobile-orbit-two-size) !important;
+    opacity: 0.58 !important;
+    animation: orbit 42s linear infinite reverse !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual .hero-visual__field {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    translate: none !important;
+    border-radius: 0 !important;
+    background: radial-gradient(
+      circle var(--hero-mobile-half-size) at 100% 50%,
+      rgba(13, 77, 79, 0.32),
+      rgba(13, 77, 79, 0.09) 48%,
+      transparent 74%
+    ) !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual::before,
+  html[lang][dir] body .hero .hero__grid > .hero-visual::after {
+    top: 50% !important;
+    right: calc(-1 * var(--hero-mobile-atmosphere-half)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: var(--hero-mobile-atmosphere-size) !important;
+    height: auto !important;
+    translate: 0 -50% !important;
+    transform-origin: center !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual::before {
+    opacity: 0.3 !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual::after {
+    opacity: 0.84 !important;
+    background: radial-gradient(
+      circle at 50% 10px,
+      rgba(224, 167, 47, 1) 0 3px,
+      rgba(224, 167, 47, 0.42) 4px 7px,
+      transparent 8px
+    ) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero__copy {
+    justify-self: end !important;
+    margin: 0 var(--responsive-gutter) 0 auto !important;
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual .hero-mark {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-half-size)) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual .hero-orbit--one {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-orbit-one-half)) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual .hero-orbit--two {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-orbit-two-half)) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual .hero-visual__field {
+    background: radial-gradient(
+      circle var(--hero-mobile-half-size) at 0% 50%,
+      rgba(13, 77, 79, 0.32),
+      rgba(13, 77, 79, 0.09) 48%,
+      transparent 74%
+    ) !important;
+  }
+
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual::before,
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid > .hero-visual::after {
+    right: auto !important;
+    left: calc(-1 * var(--hero-mobile-atmosphere-half)) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  html[lang][dir] body .hero .hero__grid > .hero__copy {
+    width: min(63vw, 255px) !important;
+    max-width: 255px !important;
+  }
+
+  html[lang][dir] body .hero .hero-title {
+    font-size: clamp(2.55rem, 13vw, 3.15rem) !important;
+  }
+
+  html[lang][dir] body .hero .lead {
+    max-width: 25ch !important;
+    font-size: clamp(0.8rem, 3.45vw, 0.9rem) !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .is-ready .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:hover,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:focus-within {
+    --hero-mobile-mark-size: 420px;
+    --hero-mobile-half-size: 210px;
+    --hero-mobile-orbit-one-size: 490px;
+    --hero-mobile-orbit-one-half: 245px;
+    --hero-mobile-orbit-two-size: 570px;
+    --hero-mobile-orbit-two-half: 285px;
+    --hero-mobile-atmosphere-size: 520px;
+    --hero-mobile-atmosphere-half: 260px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-visual::after,
   html[lang][dir] body .hero .hero-mark__core,
