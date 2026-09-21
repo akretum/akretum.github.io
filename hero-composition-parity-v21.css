@@ -600,6 +600,33 @@
   }
 }
 
+/* AKR-40 tablet safeguard: keep the completed ProductionMaster visible on
+   701-960px viewports. Phone composition already owns <=700px and desktop
+   composition starts at 961px, so this only closes the tablet visibility gap. */
+@media (min-width: 701px) and (max-width: 960px) {
+  html[lang][dir] body .hero .hero-mark__piece {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__complete {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+  }
+
+  html[lang][dir] body .hero .hero-mark__core {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    animation: system-core-heartbeat 4.2s ease-in-out 0.8s infinite !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-visual::after,
   html[lang][dir] body .hero .hero-mark__core,
