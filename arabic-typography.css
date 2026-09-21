@@ -158,3 +158,28 @@ html[lang="ar"][dir="rtl"] :where(
     line-height: 1.34 !important;
   }
 }
+
+/* AKR-41 responsive Cairo line-box contract.
+   The shared responsive scale is intentionally compact for Inter. Cairo needs
+   taller line boxes at the same display sizes. Keep these overrides scoped to
+   Arabic responsive headings so English and Arabic desktop remain unchanged.
+*/
+@media (max-width: 960px) {
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero__copy .hero-title,
+  html[lang="ar"][dir="rtl"] body .hero .hero__grid .hero__copy .hero-title__line {
+    line-height: 1.4 !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 960px) {
+  html[lang="ar"][dir="rtl"] body :where(
+    .story__heading h2,
+    .section-heading h2,
+    .systems__intro h2,
+    .portfolio__heading h2,
+    .contact-panel h2
+  ) {
+    line-height: 1.3 !important;
+  }
+}
