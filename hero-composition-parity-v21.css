@@ -604,6 +604,25 @@
    701-960px viewports. Phone composition already owns <=700px and desktop
    composition starts at 961px, so this only closes the tablet visibility gap. */
 @media (min-width: 701px) and (max-width: 960px) {
+  html[lang][dir] body .hero {
+    position: relative !important;
+  }
+
+  html[lang][dir] body .hero .hero__grid > .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .is-ready .hero-visual,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:hover,
+  html[lang][dir] body .hero .hero__grid > .hero-visual:focus-within {
+    position: absolute !important;
+    inset: 0 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    justify-self: stretch !important;
+    align-self: stretch !important;
+  }
+
   html[lang][dir] body .hero .hero-mark__piece {
     display: none !important;
     opacity: 0 !important;
